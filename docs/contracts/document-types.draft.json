@@ -1,0 +1,150 @@
+{
+  "schema_version": "draft-0.1",
+  "warning": "All types are draft taxonomy examples. An engineer chooses a document type for each file. A type is not permission to export data.",
+  "types": [
+    {
+      "id": "working_drawing",
+      "title": "Рабочий чертёж",
+      "parser_profile": "rd_drawing_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "working_documentation",
+      "title": "Комплект РД",
+      "parser_profile": "rd_tables_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "technical_assignment",
+      "title": "Техническое задание",
+      "parser_profile": "text_contract_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "technical_conditions",
+      "title": "Технические условия",
+      "parser_profile": "text_contract_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "technical_specification",
+      "title": "Спецификация оборудования",
+      "parser_profile": "equipment_table_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "bill_of_quantities",
+      "title": "Ведомость объёмов работ",
+      "parser_profile": "quantity_table_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "estimate",
+      "title": "Смета / ССР",
+      "parser_profile": "estimate_table_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "change_register",
+      "title": "Ведомость изменений/отступлений",
+      "parser_profile": "change_table_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "construction_log",
+      "title": "Общий журнал работ",
+      "parser_profile": "journal_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "special_works_log",
+      "title": "Специальный журнал работ",
+      "parser_profile": "journal_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "input_inspection_log",
+      "title": "Журнал входного контроля",
+      "parser_profile": "inspection_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "hidden_works_act",
+      "title": "АОСР — скрытые работы",
+      "parser_profile": "act_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "executive_survey",
+      "title": "Исполнительная схема",
+      "parser_profile": "drawing_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "equipment_passport",
+      "title": "Паспорт оборудования",
+      "parser_profile": "equipment_document_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "quality_certificate",
+      "title": "Сертификат/паспорт качества",
+      "parser_profile": "quality_document_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "material_batch",
+      "title": "Документ партии материала",
+      "parser_profile": "quality_document_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "inspection_act",
+      "title": "Акт контроля / приёмки",
+      "parser_profile": "act_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "electrical_installation_act",
+      "title": "Акт электромонтажа",
+      "parser_profile": "act_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "p_nr_protocol",
+      "title": "Протокол ПНР",
+      "parser_profile": "protocol_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "equipment_config_archive",
+      "title": "Архив конфигурации оборудования",
+      "parser_profile": "sensitive_binary_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "id_register",
+      "title": "Реестр исполнительной документации",
+      "parser_profile": "id_register_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "contract",
+      "title": "Договор / приложение",
+      "parser_profile": "text_contract_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "order",
+      "title": "Приказ / распоряжение",
+      "parser_profile": "text_contract_v1",
+      "export_policy": "blocked_until_review"
+    },
+    {
+      "id": "other",
+      "title": "Иное / требуется уточнение",
+      "parser_profile": "blocked_v1",
+      "export_policy": "blocked_until_review"
+    }
+  ]
+}
