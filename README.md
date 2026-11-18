@@ -8,7 +8,9 @@
 
 **[Редактируемая схема draw.io: потоки, нормативы, ИИ, защищённая «коробка», ПТО](diagrams/01-construction-data-flow.drawio)**
 
-Откройте файл на GitHub через [diagrams.net](https://app.diagrams.net/?mode=github) или скачайте и откройте в diagrams.net. Диаграмма собрана из редактируемых фигур и стрелок, а не является изображением.
+**[Редактируемая табличная модель ИД — второй файл draw.io](diagrams/02-id-record-model.drawio)**
+
+Откройте файлы на GitHub через [diagrams.net](https://app.diagrams.net/?mode=github) или скачайте и откройте в diagrams.net. Диаграмма собрана из редактируемых фигур и стрелок, а не является изображением.
 
 ## Ключевая идея
 
@@ -31,6 +33,7 @@ flowchart LR
 | Файл | Содержание |
 | --- | --- |
 | [diagrams/01-construction-data-flow.drawio](diagrams/01-construction-data-flow.drawio) | Основная красивая редактируемая схема |
+| [diagrams/02-id-record-model.drawio](diagrams/02-id-record-model.drawio) | Табличная модель в пяти взаимосвязанных блоках |
 | [docs/architecture.md](docs/architecture.md) | Подробное объяснение идеи и потоков данных |
 | [docs/data-model.md](docs/data-model.md) | Виды таблиц, связи, поля, пример реестра |
 | [diagrams/02-linked-records.mmd](diagrams/02-linked-records.mmd) | Схема связей между документами и данными |
