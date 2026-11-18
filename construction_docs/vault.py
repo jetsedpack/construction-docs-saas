@@ -115,6 +115,88 @@ class EncryptedVault:
         self.audit("document_imported", {"document_id": ident, "status": "ok"})
         return doc
 
+
+    def stage_file(self, path: str | Path) -> ImportedDocument:
+        """Store original bytes first; parsing must wait for the engineer's type choice.
+
+        Supports an unknown filename extension (e.g. DWG), but never processes
+        or exports unsupported contents. This is a local PoC staging operation.
+        """
+        source = Path(path)
+        if not source.is_file():
+            raise ValueError("Файл не найден")
+        if source.stat().st_size > MAX_FILE_BYTES:
+            raise ValueError("Файл превышает локальный лимит PoC 12 MiB")
+        content = source.read_bytes()
+        if not content:
+            raise ValueError("Пустой файл")
+        ident = uuid.uuid4().hex
+        doc = ImportedDocument(
+            id=ident,
+            name=source.name,
+            kind=source.suffix.lower(),
+            imported_at=_now(),
+            text="",
+            tables=[],
+            warnings=["Тип документа ещё не выбран — обработка не выполнялась"],
+            size=len(content),
+            sha256=hashlib.sha256(content).hexdigest(),
+            doc_type="",
+            parse_status="needs_classification",
+        )
+        target = self.root / "blobs" / f"{ident}.enc"
+        with target.open("xb") as handle:
+            handle.write(self.crypto.encrypt(content))
+        try:
+            with self.db:
+                self.db.execute(
+                    "INSERT INTO documents (id, payload) VALUES (?, ?)",
+                    (ident, self._seal(doc.local_json())),
+                )
+        except Exception:
+            target.unlink(missing_ok=True)
+            raise
+        self.audit("document_staged", {"document_id": ident, "status": "needs_classification"})
+        return doc
+
+    def classify_document(self, ident: str, code: str) -> ImportedDocument:
+        """Apply the manually selected type and run the LOCAL parser, never AI.
+
+        Parser support still depends on the file *format*. Selecting a document
+        type does not make an unsupported format readable or export-safe.
+        """
+        from .document_types import require_type
+        require_type(code)
+        doc = self.get_document(ident)
+        content = self.original_bytes(ident)
+        doc.doc_type = code
+        try:
+            parsed = extract(doc.name, content)
+        except (ValueError, RuntimeError, OSError) as exc:
+            doc.text = ""
+            doc.tables = []
+            doc.warnings = [f"Локальный парсер заблокировал файл: {str(exc)[:180]}"]
+            doc.parse_status = "blocked"
+        else:
+            doc.text = parsed.text
+            doc.tables = parsed.tables
+            doc.warnings = parsed.warnings
+            doc.parse_status = (
+                "needs_attention"
+                if any("нужен локальный OCR" in warning for warning in parsed.warnings)
+                else "parsed"
+            )
+        with self.db:
+            self.db.execute(
+                "UPDATE documents SET payload=? WHERE id=?",
+                (self._seal(doc.local_json()), ident),
+            )
+        self.audit(
+            "document_classified",
+            {"document_id": ident, "document_type": code, "parse_status": doc.parse_status},
+        )
+        return doc
+
     def get_document(self, ident: str) -> ImportedDocument:
         row = self.db.execute("SELECT payload FROM documents WHERE id=?", (ident,)).fetchone()
         if row is None:
