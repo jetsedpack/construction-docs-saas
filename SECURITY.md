@@ -1,5 +1,7 @@
 # Security disclosure & data handling
 
+> **Target design vs current implementation (18.11.2026):** the approved product intends to send a *sanitized structured representation* (fields, relationships, layout and vetted metadata) through a future policy gateway. That pathway, alias vault and local rehydration are NOT implemented or cleared for real customer data. Today the code only sends enum issue categories and numeric metrics. See [decision contract](docs/decisions/2026-11-18-product-contract.md) and [draft roundtrip](docs/functional/04-structured-roundtrip-contract.md).
+
 **Status:** prototyping only. NOT approved for real production documents, legal signing, regulated processing, or multi-user installation.
 
 - Do not add genuine CHGES documents, contracts, configuration archives, personal identifiers, private certificates, network credentials or customer records to Git.
