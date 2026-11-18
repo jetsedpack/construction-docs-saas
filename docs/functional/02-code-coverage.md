@@ -5,9 +5,11 @@
 | ID | Подфункция | Код сейчас | Текущий статус | Что писать следующим |
 | --- | --- | --- | --- | --- |
 | F00.1 | Контекст проекта и права | `construction_docs/desktop.py`, `vault.py` | Частично: один Windows-пользователь | ProjectContext, project_id, scopes, RBAC для командного этапа |
-| F01.1 | Выбор и загрузка файла | `desktop.py::import_document`, `vault.py::import_file` | Есть в PoC | пакетный импорт, каталог проекта, контроль MIME |
-| F01.2 | PDF/DOCX/XLSX/CSV | `ingest.py::extract` | Есть в PoC, ограничения | SourceFragment с page/sheet/cell, диагностика OCR |
+| F01.1 | Пакетная загрузка всей папки + таблица выбора типа **каждого** файла | `desktop.py::import_document`, `vault.py::import_file` | Только импорт одного файла; новая функция отсутствует | recursive batch importer, file manifest, per-file dropdown из DocumentType каталога |
+| F01.2 | Парсинг по выбранному предметному типу + формату | `ingest.py::extract` | Базовые парсеры без DocumentType profiles | ParserProfile, ExtractionSchema, SourceFragment, локальный OCR/графика для расширенного контура |
 | F01.3 | Шифрование оригинала | `vault.py::EncryptedVault` | Есть в PoC DPAPI+Fernet | восстановление ключей, TTL/retention, real threat review |
+| F01.4 | Псевдонимизация и обратная сборка безопасного пакета | — | Не реализовано | alias vault, SensitiveFieldPolicy, structured JSON, fail-closed и packet inspection |
+| F01.5 | Усиленный защищённый контур | — | Не реализовано | сканы/вложения/metadata/hidden Excel, sandbox, re-identification tests, coverage |
 | F02.1 | Структурированные Claim | `models.py::ImportedDocument` | Нет — только текст/таблицы | новые DTO, provenance, parse templates |
 | F02.2 | Сущности и связи | `graph.py::EntityGraph`, `vault.py::save_graph` | Есть primitives, ручной граф | automatic matching, collision/ambiguity queue |
 | F02.3 | Версии РД и документов | `graph.py::Node.state` | Нет полноценного revision workflow | immutable revisions, hashing, link history |
