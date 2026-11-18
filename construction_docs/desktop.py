@@ -9,6 +9,8 @@ import json
 import sys
 from pathlib import Path
 
+from .batch import discover_files
+from .document_types import DOCUMENT_TYPES
 from .gateway import GPUGOGateway, GatewayError, safe_batch
 from .models import Issue
 from .rules import check_register
@@ -22,7 +24,7 @@ def main() -> int:
 
     from PySide6.QtCore import QThread, Signal
     from PySide6.QtWidgets import (
-        QApplication, QHBoxLayout, QInputDialog, QLabel, QMainWindow, QMessageBox,
+        QApplication, QComboBox, QHBoxLayout, QInputDialog, QLabel, QMainWindow, QMessageBox,
         QFileDialog, QPushButton, QSplitter, QTableWidget, QTableWidgetItem,
         QTextEdit, QVBoxLayout, QWidget,
     )
@@ -60,6 +62,7 @@ def main() -> int:
             layout.addWidget(title)
             buttons = QHBoxLayout()
             for caption, fn in [
+                ("Загрузить всю папку", self.import_batch),
                 ("Импорт файла", self.import_document),
                 ("Проверить реестр", self.check_selected),
                 ("AI: показать обезличенный запрос", self.ask_ai),
@@ -72,8 +75,8 @@ def main() -> int:
             layout.addLayout(buttons)
 
             splitter = QSplitter()
-            self.doc_table = QTableWidget(0, 4)
-            self.doc_table.setHorizontalHeaderLabels(["Имя документа", "Формат", "Импортирован", "Предупреждения"])
+            self.doc_table = QTableWidget(0, 5)
+            self.doc_table.setHorizontalHeaderLabels(["Файл", "Формат", "Тип (выбирает инженер)", "Статус", "Импортирован"])
             self.doc_table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
             self.doc_table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
             self.doc_table.itemSelectionChanged.connect(self.display_selected)
@@ -102,11 +105,23 @@ def main() -> int:
             self.docs = self.vault.list_documents()
             self.doc_table.setRowCount(len(self.docs))
             for row, item in enumerate(self.docs):
-                for col, text in enumerate([
-                    item.name, item.kind, item.imported_at[:19],
-                    "; ".join(item.warnings) or "—",
-                ]):
-                    self.doc_table.setItem(row, col, QTableWidgetItem(str(text)))
+                for col, value in (
+                    (0, item.name), (1, item.kind),
+                    (3, item.parse_status), (4, item.imported_at[:19]),
+                ):
+                    self.doc_table.setItem(row, col, QTableWidgetItem(str(value)))
+                chooser = QComboBox()
+                chooser.addItem("— Выберите тип документа —", "")
+                for category in DOCUMENT_TYPES:
+                    if category.code != "other":
+                        chooser.addItem(category.label, category.code)
+                idx = chooser.findData(item.doc_type)
+                chooser.setCurrentIndex(max(idx, 0))
+                chooser.currentIndexChanged.connect(
+                    lambda _idx, document_id=item.id, widget=chooser:
+                        self.classify_selected(document_id, widget.currentData())
+                )
+                self.doc_table.setCellWidget(row, 2, chooser)
             self.doc_table.resizeColumnsToContents()
 
         def selected(self):
@@ -127,21 +142,67 @@ def main() -> int:
 
         def import_document(self):
             filename, _filter = QFileDialog.getOpenFileName(
-                self, "Загрузить документ", str(Path.home()),
-                "Документы (*.pdf *.docx *.xlsx *.csv)",
+                self, "Загрузить исходный файл", str(Path.home()), "Все файлы (*.*)",
             )
             if not filename:
                 return
             try:
-                document = self.vault.import_file(filename)
+                document = self.vault.stage_file(filename)
                 self.refresh_docs()
                 self.output.setPlainText(
-                    f"Локально импортировано: {document.name}\n"
-                    + "\n".join(document.warnings)
+                    f"Защищённо сохранён оригинал: {document.name}\n"
+                    "Выберите тип файла в третьем столбце.\n"
+                    "До выбора типа локальный парсер и AI не запускаются."
                 )
-                self.statusBar().showMessage("Файл локально сохранён в шифрованном vault")
             except Exception as exc:
                 QMessageBox.warning(self, "Ошибка импорта", str(exc))
+
+        def import_batch(self):
+            folder = QFileDialog.getExistingDirectory(
+                self, "Выбрать папку со всей рабочей документацией", str(Path.home()),
+            )
+            if not folder:
+                return
+            try:
+                manifest = discover_files(folder)
+            except ValueError as exc:
+                QMessageBox.warning(self, "Пакет не принят", str(exc))
+                return
+            accepted = 0
+            errors: list[str] = []
+            for entry in manifest:
+                try:
+                    self.vault.stage_file(entry.path)
+                    accepted += 1
+                except (OSError, ValueError) as exc:
+                    errors.append(f"{entry.relative_path}: {exc}")
+            self.refresh_docs()
+            self.output.setPlainText(
+                f"Пакет: {len(manifest)} файлов\n"
+                f"В закрытый контур сохранено: {accepted}\n"
+                f"Ошибок: {len(errors)}\n\n"
+                "Для каждого файла выберите его тип отдельно.\n"
+                + "\n".join(errors[:50])
+            )
+            self.statusBar().showMessage(
+                f"Закрытый контур: {accepted} файлов. Сначала укажите тип КАЖДОГО."
+            )
+
+        def classify_selected(self, document_id: str, doc_type: str):
+            if not doc_type:
+                return
+            try:
+                document = self.vault.classify_document(document_id, doc_type)
+            except (OSError, ValueError) as exc:
+                QMessageBox.warning(self, "Классификация не выполнена", str(exc))
+                return
+            self.refresh_docs()
+            self.output.setPlainText(
+                f"Тип выбран: {doc_type}\n"
+                f"Локальный парсер: {document.parse_status}\n"
+                + "\n".join(document.warnings)
+                + "\nТип файла не разрешает передачу его содержимого на GPUGO."
+            )
 
         def display_issues(self):
             self.issue_table.setRowCount(len(self.current_issues))
