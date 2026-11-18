@@ -45,6 +45,8 @@ class ImportedDocument:
     warnings: list[str]
     size: int
     sha256: str
+    doc_type: str = ""  # selected locally by the engineer; never an export permission
+    parse_status: str = "parsed"  # staged / needs_classification / parsed / blocked / needs_attention
 
     def local_json(self) -> dict:
         return asdict(self)
