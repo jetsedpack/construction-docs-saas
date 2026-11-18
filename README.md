@@ -33,69 +33,21 @@
 
 ### Что можно реализовать по конкретным контрактам
 
-| Компонент | Спецификация / контракт |
-| --- | --- |
-| Функциональная модель «коробки» | [A0](docs/functional/00-A0-protected-box.md) |
-| Массовый импорт, выбор типа на файл, MVP vs secure | [F01](docs/functional/03-F01-ingestion-mvp-secure.md) |
-| Вся безопасная структура и метаданные → ИИ → адресная подстановка | [Roundtrip](docs/functional/04-structured-roundtrip-contract.md) |
-| Форма исходящего пакета | [`structured-packet.schema.json`](docs/contracts/structured-packet.schema.json) |
-| Форма структурного ответа AI | [`prepared-document.schema.json`](docs/contracts/prepared-document.schema.json) |
-| Типы документов «коробки» | [Черновой каталог типов](docs/contracts/document-types.draft.json) |
-| Алгоритмы по функциям / код | [F01–F07](docs/functional/01-functional-specification.md) · [Матрица покрытия](docs/functional/02-code-coverage.md) |
-| Порядок разработки с приёмкой и отрицательными кейсами | [Vertical slice plan](docs/implementation/11-vertical-slice-plan.md) |
-
-**API-схемы — draft**, а не уже подключённый production API. В схеме может быть строковое поле, но передавать произвольный текст или неизвестные метаданные запрещено: отдельная policy должна проверять содержание и косвенную идентификацию.
-
-## Инженерный статус
+## Файлы
 
 | Подсистема | Фактическое состояние на 18.11.2026 |
 | --- | --- |
-| Windows PySide6 UI | **PoC (обновлён):** загрузка папки, индивидуальный выпадающий тип для каждого файла, локальный журнал и AI preview; UX без проверки на чистой Windows VM |
-| Чтение PDF/DOCX/XLSX/CSV | **PoC:** локальный парсер запускается после классификации вновь загруженного файла; неподдержанные DWG и прочие форматы могут быть сохранены зашифрованно, но не распознаны |
-| Зашифрованное хранилище | **PoC:** DPAPI + Fernet + SQLite blobs/metadata; не SQLCipher/не multi-user |
-| Проверки реестра | **PoC:** арифметика страниц, пересечения, отсутствующие служебные поля |
-| Graph и каталог НПА/НТД | **Частично:** графовые примитивы и ручной каталог редакций |
-| Client gateway / GPUGO Edge demo | **PoC:** только типы замечаний и числа; **не** полноценный анализ РД |
-| Пакетная загрузка + тип каждого файла | **Первая реализация PoC:** `batch.py` + `document_types.py` + staged vault + `QComboBox` на каждую строку; ограничение 500 файлов / 512 MiB пакета и 12 MiB одного файла; без промышленного hardening |
-| Структурная псевдонимизация и обратная подстановка | **Контракты готовы; рабочий безопасный пайплайн отсутствует** |
-| ИИ-сборка ИД, локальный renderer DOCX/XLSX/PDF | **Спроектировано; не реализовано** |
-| НПА/НТД updater, проверка применимости, дата в UI | **Спроектировано; не реализовано** |
-| Реальная модель на 4× RTX PRO 6000D | **Не развёрнута и не измерена в рамках репозитория** |
-| Подписанный Windows installer и enterprise hardening | **Не реализовано** |
+| [diagrams/01-construction-data-flow.drawio](diagrams/01-construction-data-flow.drawio) | Основная красивая редактируемая схема |
+| [diagrams/02-id-record-model.drawio](diagrams/02-id-record-model.drawio) | Табличная модель в пяти взаимосвязанных блоках |
+| [docs/architecture.md](docs/architecture.md) | Подробное объяснение идеи и потоков данных |
+| [docs/data-model.md](docs/data-model.md) | Виды таблиц, связи, поля, пример реестра |
+| [diagrams/02-linked-records.mmd](diagrams/02-linked-records.mmd) | Схема связей между документами и данными |
+| [diagrams/system-context.mmd](diagrams/system-context.mmd) | Компактная архитектурная схема |
+| [diagrams/document-flow.mmd](diagrams/document-flow.mmd) | Цикл обработки замечаний и выпуска ИД |
+| [docs/security-boundaries.md](docs/security-boundaries.md) | Границы доступа, шифрование, псевдонимизация |
+| [docs/regulatory-sources.md](docs/regulatory-sources.md) | Отправные нормативные ориентиры и источники |
+| [docs/decisions.md](docs/decisions.md) | Открытые архитектурные вопросы |
+| [docs/roadmap.md](docs/roadmap.md) | Исследовательские шаги, не план обязательной разработки |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Работа с Git и диаграммами |
 
-### Запуск существующего PoC на Windows
-
-Требования: Windows 11 x64, Python 3.12, Git. Настоящие документы заказчиков до security review **не использовать**.
-
-```powershell
-git clone https://github.com/jetsedpack/construction-docs-saas.git
-cd construction-docs-saas
-git checkout feat/windows-saas-architecture-mvp
-py -3.12 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -e ".[desktop,server,dev]"
-python -m construction_docs.desktop
-```
-
-CLI (старый одностадийный режим, отдельно от нового UI): `construction-docs import .\synthetic.xlsx`, `construction-docs list`, `construction-docs check <document-id>`. Без настроенного GPUGO inference endpoint PoC работает офлайн.
-
-Проверка кода и архитектуры:
-
-```powershell
-python -m pytest -q
-python scripts/check_architecture.py
-```
-
-[GitHub Actions](.github/workflows/ci.yml) запускает Python-тесты на Windows/Linux, smoke import UI на Windows и отдельную проверку схем/диаграмм/ссылок.
-
-## Что появилось сегодня
-
-**18 ноября 2026:** добавлен PoC массового локального импорта с ручным выбором типа каждого файла; согласована новая A0; уточнена F01 с загрузкой «как ком белья в стиралку», но **типом на каждый файл**; закреплён протокол «структурная копия с расположением и метаданными → обезличенный AI результат → локальное восстановление чувствительных данных»; подготовлены **четыре визуальные схемы**, редактируемый `draw.io`, справочник решений, контрактные JSON Schema, синтетические примеры, рабочий план и проверки архитектуры в CI.
-
-История задач — [Issues](https://github.com/jetsedpack/construction-docs-saas/issues), изменения к ревью — [PR #1](https://github.com/jetsedpack/construction-docs-saas/pull/1). Это **постановка и инженерные артефакты**, не фиктивный отчёт об уже работающей системе.
-
-## Дальнейшее чтение
-
-[Architecture Atlas](diagrams/atlas/README.md) · [Product contract](docs/decisions/2026-11-18-product-contract.md) · [Vertical slice](docs/implementation/11-vertical-slice-plan.md) · [Functional specification](docs/functional/README.md) · [Prior implementation research](docs/implementation/01-architecture.md) · [Security](SECURITY.md).
-
-**Никаких подлинных документов ЧГЭС, реквизитов контрагентов, ключей, закрытых схем и архивов конфигураций в репозитории нет.** В примерах используются только синтетические данные. ИИ не удостоверяет фактическое выполнение, не создаёт измерения и не подписывает документы за ответственных лиц.
+**Следующий материал:** реальные (по возможности обезличенные) примеры таблиц, актов и структуры папок на облачных дисках для восстановления предметной модели.
