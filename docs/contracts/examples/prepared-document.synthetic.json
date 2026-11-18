@@ -1,0 +1,49 @@
+{
+  "schema_version": "draft-0.1",
+  "template": {
+    "template_id": "id_register",
+    "version": "1"
+  },
+  "status": "draft",
+  "fields": [
+    {
+      "id": "F-1",
+      "status": "placeholder",
+      "value": "ИП 1849",
+      "source_refs": [
+        "SRC-1"
+      ]
+    },
+    {
+      "id": "F-2",
+      "status": "filled",
+      "value": 20,
+      "source_refs": [
+        "SRC-2"
+      ]
+    },
+    {
+      "id": "F-3",
+      "status": "filled",
+      "value": 33,
+      "source_refs": [
+        "SRC-3"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "category": "conflict",
+      "field_ids": [
+        "F-2",
+        "F-3"
+      ],
+      "status": "open"
+    }
+  ],
+  "coverage": {
+    "documents_seen": 1,
+    "documents_processed": 1,
+    "documents_blocked": 0
+  }
+}
