@@ -41,3 +41,14 @@ jobs:
         shell: pwsh
         run: |
           python -c "from PySide6.QtWidgets import QApplication; import construction_docs.desktop; print('desktop imports OK')"
+
+  architecture-contracts:
+    name: Architecture assets / contracts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check draw.io, compiled SVG, schema examples and links
+        run: python scripts/check_architecture.py
