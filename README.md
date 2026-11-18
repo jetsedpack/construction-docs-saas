@@ -8,6 +8,7 @@
 
 | Карта / схема | Что показывает |
 | --- | --- |
+| [Подробная редактируемая draw.io: Windows → GPUGO + этапы](diagrams/08-windows-gpugo-implementation.drawio) | Общая инженерная карта с 4 GPU, кодом шлюза, хранилищем, разработкой |
 | [Большая mind map продукта и разработки](diagrams/03-development-mindmap.md) | Продукт, модули, НПА/НТД, код, проверка, GPUGO, риски |
 | [Архитектура + последовательность запроса](docs/implementation/01-architecture.md) | Границы Windows/GPUGO, данные, AI и человек |
 | [ER-модель + статусы документов](diagrams/04-domain-erd.md) | Реальные сущности связанной «коробки» |
