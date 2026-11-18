@@ -1,0 +1,186 @@
+"""Offline lint for the edited draw.io atlas and draft AI roundtrip contracts.
+
+No network, dependencies or customer data required. Run:
+    python scripts/check_architecture.py
+"""
+from __future__ import annotations
+
+import json
+import re
+import sys
+import xml.etree.ElementTree as ET
+from pathlib import Path
+from urllib.parse import unquote
+
+ROOT = Path(__file__).resolve().parents[1]
+ATLAS = ROOT / "diagrams" / "atlas"
+CONTRACTS = ROOT / "docs" / "contracts"
+
+
+class ContractError(ValueError):
+    """The agreed structure does not match its draft contract."""
+
+
+def check_shape(value: object, schema: dict, root: dict, path: str = "$") -> None:
+    """Small offline JSON-Schema subset sufficient for our draft contracts.
+
+    This is NOT a replacement for production JSON Schema validation or data-loss
+    prevention. It checks shape, types and allowlists, never semantic privacy.
+    """
+    if "$ref" in schema:
+        ref = schema["$ref"]
+        if not ref.startswith("#/$defs/"):
+            raise ContractError(f"{path}: external refs not supported")
+        check_shape(value, root["$defs"][ref.split("/")[-1]], root, path)
+        return
+    if "const" in schema and value != schema["const"]:
+        raise ContractError(f"{path}: unexpected constant")
+    if "enum" in schema and value not in schema["enum"]:
+        raise ContractError(f"{path}: enum")
+    types = schema.get("type")
+    if types:
+        names = [types] if isinstance(types, str) else types
+
+        def is_type(name: str) -> bool:
+            return {
+                "object": lambda: isinstance(value, dict),
+                "array": lambda: isinstance(value, list),
+                "string": lambda: isinstance(value, str),
+                "integer": lambda: type(value) is int,
+                "number": lambda: type(value) in (int, float),
+                "boolean": lambda: type(value) is bool,
+                "null": lambda: value is None,
+            }[name]()
+
+        if not any(is_type(name) for name in names):
+            raise ContractError(f"{path}: wrong type")
+    if isinstance(value, dict):
+        required = schema.get("required", [])
+        missing = set(required) - set(value)
+        if missing:
+            raise ContractError(f"{path}: required fields missing: {sorted(missing)}")
+        properties = schema.get("properties", {})
+        if schema.get("additionalProperties") is False:
+            extra = set(value) - set(properties)
+            if extra:
+                raise ContractError(f"{path}: forbidden fields: {sorted(extra)}")
+        for key, item in value.items():
+            if key in properties:
+                check_shape(item, properties[key], root, path + "." + key)
+    elif isinstance(value, list):
+        if "maxItems" in schema and len(value) > schema["maxItems"]:
+            raise ContractError(f"{path}: too many items")
+        if "minItems" in schema and len(value) < schema["minItems"]:
+            raise ContractError(f"{path}: too few items")
+        if "prefixItems" in schema:
+            for i, item in enumerate(value):
+                if i < len(schema["prefixItems"]):
+                    check_shape(item, schema["prefixItems"][i], root, f"{path}[{i}]")
+        if "items" in schema:
+            for i, item in enumerate(value):
+                check_shape(item, schema["items"], root, f"{path}[{i}]")
+    elif isinstance(value, str):
+        if "maxLength" in schema and len(value) > schema["maxLength"]:
+            raise ContractError(f"{path}: too long")
+        if "pattern" in schema and re.search(schema["pattern"], value) is None:
+            raise ContractError(f"{path}: invalid pattern")
+    elif type(value) in (int, float):
+        if "minimum" in schema and value < schema["minimum"]:
+            raise ContractError(f"{path}: too small")
+        if "maximum" in schema and value > schema["maximum"]:
+            raise ContractError(f"{path}: too big")
+
+
+def check_contracts() -> None:
+    pairs = [
+        ("structured-packet.schema.json", "structured-packet.synthetic.json"),
+        ("prepared-document.schema.json", "prepared-document.synthetic.json"),
+    ]
+    for schema_name, example_name in pairs:
+        schema = json.loads((CONTRACTS / schema_name).read_text(encoding="utf-8"))
+        example = json.loads((CONTRACTS / "examples" / example_name).read_text(encoding="utf-8"))
+        check_shape(example, schema, schema)
+        forbidden_keys = {"filename", "original_path", "author_name", "source_title", "password"}
+        outbound_keys = set()
+
+        def find_keys(item: object) -> None:
+            if isinstance(item, dict):
+                outbound_keys.update(item)
+                for v in item.values():
+                    find_keys(v)
+            elif isinstance(item, list):
+                for v in item:
+                    find_keys(v)
+
+        find_keys(example)
+        if outbound_keys & forbidden_keys:
+            raise ContractError(f"{example_name}: prohibited keys")
+        if "ИП Иванов" in json.dumps(example, ensure_ascii=False):
+            raise ContractError(f"{example_name}: example leaks real alias value")
+    registry = json.loads((CONTRACTS / "document-types.draft.json").read_text(encoding="utf-8"))
+    types = registry["types"]
+    ids = [item["id"] for item in types]
+    if len(ids) != len(set(ids)) or len(ids) < 15:
+        raise ContractError("Document types: duplicates or incomplete draft catalog")
+    if any(item.get("export_policy") != "blocked_until_review" for item in types):
+        raise ContractError("Document type must not grant export permission")
+
+
+def check_diagrams() -> None:
+    source = json.loads((ATLAS / "source.json").read_text(encoding="utf-8"))
+    design_pages = source["pages"]
+    doc = ET.parse(ATLAS / "architecture.drawio").getroot()
+    xml_pages = doc.findall("diagram")
+    if len(design_pages) != 4 or len(xml_pages) != 4:
+        raise ContractError("Atlas needs exactly four canonical pages")
+    if [p["id"] for p in design_pages] != [p.attrib["id"] for p in xml_pages]:
+        raise ContractError("draw.io page order does not match authored source")
+    for model in xml_pages:
+        graph = model.find("mxGraphModel/root")
+        if graph is None:
+            raise ContractError("Missing mxGraphModel")
+        vertices = {c.attrib["id"] for c in graph.findall("mxCell") if c.attrib.get("vertex") == "1"}
+        edges = [c for c in graph.findall("mxCell") if c.attrib.get("edge") == "1"]
+        if not edges:
+            raise ContractError("Diagram without functional links")
+        for e in edges:
+            if e.attrib.get("source") not in vertices or e.attrib.get("target") not in vertices:
+                raise ContractError(f"Dangling link {e.attrib.get('id')}")
+    for filename in ["a0-system.svg", "f01-intake.svg", "f04-f06-roundtrip.svg", "f07-norms.svg"]:
+        svg = ET.parse(ATLAS / filename).getroot()
+        if not svg.tag.endswith("svg") or "viewBox" not in svg.attrib:
+            raise ContractError(f"{filename}: not compiled SVG")
+        if len(list(svg)) < 20:
+            raise ContractError(f"{filename}: incomplete vector export")
+
+
+def check_links() -> None:
+    docs = [
+        ROOT / "README.md",
+        ATLAS / "README.md",
+        ROOT / "docs" / "decisions" / "2026-11-18-product-contract.md",
+        ROOT / "docs" / "implementation" / "11-vertical-slice-plan.md",
+    ]
+    for file in docs:
+        body = file.read_text(encoding="utf-8")
+        for target in re.findall(r"!?(?:\[[^\]]+\])\(([^)]+)\)", body):
+            if target.startswith(("https://", "http://", "#", "mailto:")):
+                continue
+            target = unquote(target).split("#", 1)[0]
+            if not (file.parent / target).exists():
+                raise ContractError(f"{file.relative_to(ROOT)}: missing link {target}")
+
+
+def run() -> None:
+    check_contracts()
+    check_diagrams()
+    check_links()
+    print("OK: structured contracts, 4 draw.io pages, 4 compiled SVGs, document catalog and links")
+
+
+if __name__ == "__main__":
+    try:
+        run()
+    except (ValueError, OSError, ET.ParseError, KeyError) as exc:
+        print(f"Architecture lint failed: {exc}", file=sys.stderr)
+        raise SystemExit(1)
