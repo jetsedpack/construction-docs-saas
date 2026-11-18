@@ -1,5 +1,9 @@
 # Каноническая предметная модель
 
+## Реализованный локальный граф PoC
+
+Реализация: [construction_docs/graph.py](../../construction_docs/graph.py), [construction_docs/vault.py](../../construction_docs/vault.py) (зашифрованная сериализация графа). Это минимальный источник сущностей и доказательных ссылок. Постоянная PostgreSQL-схема и автоматическое связывание пока отсутствуют.
+
 ## Слой исходных доказательств
 `SourceDocument` (id, type, cipher_sha256, supplied_filename_encrypted, import_time, format, extraction_status)
 → `SourceFragment` (document_id, page/sheet/cell, offset, text_hash, encrypted_text)
