@@ -28,7 +28,7 @@ python -m construction_docs.desktop
 Запуск без GPUGO токена поддерживает импорт и локальные правила, AI недоступен.
 
 ## Сборка
-`pyside6-deploy construction_docs/desktop.py --mode onefile` — направление для эксперимента, **не проверенная сборка**. Для выпуска: зафиксировать Python и PySide6, отдельный windows runner CI, подписать exe, AV-скан, installer + app update, SBOM и проверка зависимостей, тест инсталляции на чистой VM. Официальные инструкции: https://doc.qt.io/qtforpython-6/deployment/deployment-pyside6-deploy.html
+`pyside6-deploy run_windows.py --mode onefile` — направление для эксперимента, **не проверенная сборка**. Готовый скрипт: [packaging/build_windows.ps1](../../packaging/build_windows.ps1); entrypoint — [run_windows.py](../../run_windows.py). Для выпуска: зафиксировать Python и PySide6, отдельный windows runner CI, подписать exe, AV-скан, installer + app update, SBOM и проверка зависимостей, тест инсталляции на чистой VM. Официальные инструкции: https://doc.qt.io/qtforpython-6/deployment/deployment-pyside6-deploy.html
 
 ## Локальные данные
 `%LOCALAPPDATA%\ConstructionDocsPoC\`: `vault.sqlite3` — только ciphertext чувствительных полей, `blobs/<uuid>.enc` — шифрованные файлы, `master.dpapi` — Fernet key, защищённый текущим Windows-пользователем через DPAPI. **Внимание:** это не полноценное шифрование всей БД SQLCipher; индексы и служебные времена открыты. Нужны NTFS ACL, BitLocker, политики резервного копирования, восстановление ключей и контроль привилегированного доступа.
