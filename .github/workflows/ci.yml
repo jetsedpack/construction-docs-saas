@@ -1,0 +1,43 @@
+name: Windows SaaS PoC checks
+
+on:
+  push:
+    branches: [main, "feat/**"]
+  pull_request:
+
+jobs:
+  tests:
+    name: Python ${{ matrix.python }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - name: Install dependencies
+        run: python -m pip install -e ".[server,dev]"
+      - name: Unit tests
+        run: python -m pytest -q
+      - name: Syntax check
+        run: python -m compileall -q construction_docs server
+
+  windows-ui-import:
+    name: Windows PySide6 smoke
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dependencies
+        run: python -m pip install -e ".[desktop]"
+      - name: Qt and desktop module import
+        shell: pwsh
+        run: |
+          python -c "from PySide6.QtWidgets import QApplication; import construction_docs.desktop; print('desktop imports OK')"
