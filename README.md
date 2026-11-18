@@ -1,57 +1,71 @@
-# Construction Docs SaaS — Windows + GPUGO
+# Construction Docs · GPUGO
 
-**Рабочая концепция / инженерный PoC** автоматизации контроля и систематизации исполнительной документации (ИД). Основа: кейс ЧГЭС с реестрами ИД, РД, актами, ПНР, сертификатами и ведомостями изменений. **Не готовый SaaS и не юридически сертифицированная система.**
+**Windows-приложение для подготовки, сверки и комплектования исполнительной документации с локальным защищённым контуром и AI-инференсом на серверах GPUGO.**
 
-**Сейчас:** Windows-only PySide6 клиент, зашифрованное локальное хранилище, импорт PDF/DOCX/XLSX/CSV, проверка реестров, политика минимизации данных и два шлюза — клиентский и GPUGO edge. Remote AI включается только по решению пользователя. Мобильной, планшетной и веб-версий нет и в MVP не планируется.
+> **18.11.2026 · Architecture baseline**  
+> Согласована функциональная модель. Работающий код пока является **инженерным PoC**, а не готовым SaaS, сертифицированной системой обработки персональных данных или подписания ИД.  
+> **Ветка:** `feat/windows-saas-architecture-mvp` · **[Draft PR #1](https://github.com/jetsedpack/construction-docs-saas/pull/1)** · основной `main` не заменяется без ревью.
 
-## Функциональная архитектура (основная схема)
+## Архитектура, которую можно открыть и показать
 
-**[Контракт: структурная копия → GPUGO → локальная подстановка реквизитов](docs/functional/04-structured-roundtrip-contract.md)**.
+[**Визуальный атлас — четыре SVG-схемы + многостраничный draw.io**](diagrams/atlas/README.md) · [**Редактируемый исходник draw.io**](diagrams/atlas/architecture.drawio)
 
-**[F01 — загрузка пакета и тип каждого файла: MVP / secure (2 листа draw.io)](diagrams/11-F01-batch-import-mvp-secure.drawio)** · **[F01: пошаговая спецификация](docs/functional/03-F01-ingestion-mvp-secure.md)**.
+![A0 · Изолированная коробка и GPUGO](diagrams/atlas/a0-system.svg)
 
-**[A0 — переработанная функциональная схема «коробки» (2 листа, draw.io)](diagrams/10-A0-protected-box-functional.drawio)** · **[Решения по A0](docs/functional/00-A0-protected-box.md)**. Входные чувствительные документы сначала попадают в защищённый аппендикс; ИИ работает через шлюз и формирует промежуточную версию, ПТО утверждает финальный комплект. Эта A0 приоритетна относительно старых схем F01–F07, которые уточняются по порядку.
+**Ключевая идея:** «коробка» существует **до импорта**, внутри неё живут правила, шаблоны, нормативная база, исходники и рабочие версии. Исходные чувствительные документы сначала поступают в закрытый аппендикс; ИИ взаимодействует с ними **только через контролируемый шлюз**.
 
-**[Девятистраничная блок-схема draw.io: A0 → F01…F07 → кейс ЧГЭС](diagrams/09-functional-architecture.drawio)** — редактируемые блоки с последовательностью работы, ветвлениями, отказами и различием между работающим PoC и будущими функциями. Это **главный документ**, а не mind map.
+| Лист | Что показываем | Превью |
+| --- | --- | --- |
+| **A0** | Границы коробки, GPUGO, ПТО и нормативного контура | [SVG](diagrams/atlas/a0-system.svg) |
+| **F01** | Весь пакет за раз, но **тип каждого файла инженер выбирает отдельно** | [SVG](diagrams/atlas/f01-intake.svg) |
+| **F04→F06** | Структурная копия → ИИ → обезличенный результат → **локальная подстановка реквизитов** | [SVG](diagrams/atlas/f04-f06-roundtrip.svg) |
+| **F07** | Актуализация НПА/НТД и дата последнего подтверждённого обновления | [SVG](diagrams/atlas/f07-norms.svg) |
 
-**[Посмотреть блок-схемы прямо на GitHub](docs/functional/flowcharts.md)** · **[Функциональный справочник](docs/functional/README.md)** · [Входы, операции, выходы и алгоритмы](docs/functional/01-functional-specification.md) · [Таблица функций и файлов кода](docs/functional/02-code-coverage.md).
+Статус **согласовано** означает продуктовую модель, **не означает «уже написано»**. Все четыре SVG — готовые векторные представления схем; узлы редактируются в `architecture.drawio`. [Старые схемы](diagrams/) сохранены как история исследования, но **не должны переопределять атлас**.
 
-## Вспомогательные схемы и концепции
+## Что именно утверждено 18 ноября
 
-| Карта / схема | Что показывает |
+**[14 продуктовых решений](docs/decisions/2026-11-18-product-contract.md)** закрепляют последовательность:
+
+`Папка РД → защищённое хранилище → выбор типа отдельно для каждого файла → парсер по типу → структурная копия (поля, связи, расположение, безопасные метаданные) → псевдонимы → GPUGO AI → обезличенный подготовленный документ → проверка шлюза → промежуточная версия → локальная подстановка реальных реквизитов → renderer DOCX/XLSX/PDF → ПТО утверждает финальный комплект.`
+
+Нормативная база — внутри коробки; AI-обновления идут через контролируемый контур и версионируются. Во время обработки инженер может спрашивать ИИ на естественном языке; **не обязан принимать каждый промежуточный AI-шаг**. Неизвестный или непроверенный документ нельзя молча считать обработанным.
+
+### Что можно реализовать по конкретным контрактам
+
+| Компонент | Спецификация / контракт |
 | --- | --- |
-| [Подробная редактируемая draw.io: Windows → GPUGO + этапы](diagrams/08-windows-gpugo-implementation.drawio) | Общая инженерная карта с 4 GPU, кодом шлюза, хранилищем, разработкой |
-| [Старая mind map (не основной документ)](diagrams/03-development-mindmap.md) | Концептуальные заметки; функциональная структура выше имеет приоритет |
-| [Архитектура + последовательность запроса](docs/implementation/01-architecture.md) | Границы Windows/GPUGO, данные, AI и человек |
-| [ER-модель + статусы документов](diagrams/04-domain-erd.md) | Реальные сущности связанной «коробки» |
-| [Размещение 4×6000D / варианты TP/DP](diagrams/05-gpugo-deployment.md) | Edge, inference, GPU, тестирование |
-| [Windows UX и пользовательский процесс](diagrams/06-windows-user-flows.md) | ПТО: импорт → проверки → AI → решение |
-| [Модель угроз и границы данных](diagrams/07-threat-model.md) | Шифрование, allowlist, trusted/untrusted |
-| [Редактируемая draw.io: потоки данных](diagrams/01-construction-data-flow.drawio) | Исходный визуальный чертёж |
-| [Редактируемая draw.io: таблицы ИД](diagrams/02-id-record-model.drawio) | Пять связанных контуров учёта |
+| Функциональная модель «коробки» | [A0](docs/functional/00-A0-protected-box.md) |
+| Массовый импорт, выбор типа на файл, MVP vs secure | [F01](docs/functional/03-F01-ingestion-mvp-secure.md) |
+| Вся безопасная структура и метаданные → ИИ → адресная подстановка | [Roundtrip](docs/functional/04-structured-roundtrip-contract.md) |
+| Форма исходящего пакета | [`structured-packet.schema.json`](docs/contracts/structured-packet.schema.json) |
+| Форма структурного ответа AI | [`prepared-document.schema.json`](docs/contracts/prepared-document.schema.json) |
+| Типы документов «коробки» | [Черновой каталог типов](docs/contracts/document-types.draft.json) |
+| Алгоритмы по функциям / код | [F01–F07](docs/functional/01-functional-specification.md) · [Матрица покрытия](docs/functional/02-code-coverage.md) |
+| Порядок разработки с приёмкой и отрицательными кейсами | [Vertical slice plan](docs/implementation/11-vertical-slice-plan.md) |
 
-Mermaid-диаграммы отображаются прямо на GitHub; их текст легко меняет Codex. Для draw.io есть [diagrams.net](https://app.diagrams.net/).
+**API-схемы — draft**, а не уже подключённый production API. В схеме может быть строковое поле, но передавать произвольный текст или неизвестные метаданные запрещено: отдельная policy должна проверять содержание и косвенную идентификацию.
 
-## Документация разработки
+## Инженерный статус
 
-- [Область MVP и ограничения](docs/implementation/00-scope.md)
-- [Подробная архитектура](docs/implementation/01-architecture.md)
-- [Каноническая предметная модель и контракты](docs/implementation/02-data-contract.md)
-- [Windows-интерфейс и установка](docs/implementation/03-windows.md)
-- [Безопасность, псевдонимизация и data flow](docs/implementation/04-security.md)
-- [GPUgo inference: 4 RTX PRO 6000D](docs/implementation/05-gpugo-inference.md)
-- [Кейс ЧГЭС и тестовые сценарии](docs/implementation/06-chges-test-plan.md)
-- [Этапы, владельцы, риски, критический путь](docs/implementation/07-roadmap.md)
-- [API-контракт шлюза](docs/implementation/08-api-contract.md)
-- [Критерии приёмки и readiness](docs/implementation/09-acceptance-and-validation.md)
-- [Прототип server-side GPUGO Edge](server/gpugo_edge/README.md)
-- [Security policy](SECURITY.md)
+| Подсистема | Фактическое состояние на 18.11.2026 |
+| --- | --- |
+| Windows PySide6 UI | **PoC:** импорт одного файла, показ находок, локальный журнал и AI preview |
+| Чтение PDF/DOCX/XLSX/CSV | **PoC:** ограниченный локальный importer; нет полноценного OCR/CAD |
+| Зашифрованное хранилище | **PoC:** DPAPI + Fernet + SQLite blobs/metadata; не SQLCipher/не multi-user |
+| Проверки реестра | **PoC:** арифметика страниц, пересечения, отсутствующие служебные поля |
+| Graph и каталог НПА/НТД | **Частично:** графовые примитивы и ручной каталог редакций |
+| Client gateway / GPUGO Edge demo | **PoC:** только типы замечаний и числа; **не** полноценный анализ РД |
+| Пакетная загрузка + тип каждого файла | **Спроектировано; UI/оркестрация не реализованы** |
+| Структурная псевдонимизация и обратная подстановка | **Контракты готовы; рабочий безопасный пайплайн отсутствует** |
+| ИИ-сборка ИД, локальный renderer DOCX/XLSX/PDF | **Спроектировано; не реализовано** |
+| НПА/НТД updater, проверка применимости, дата в UI | **Спроектировано; не реализовано** |
+| Реальная модель на 4× RTX PRO 6000D | **Не развёрнута и не измерена в рамках репозитория** |
+| Подписанный Windows installer и enterprise hardening | **Не реализовано** |
 
-Ранее подготовленные [общее описание предметной области](docs/architecture.md), [модель данных](docs/data-model.md) и [нормативные источники](docs/regulatory-sources.md) остаются в репозитории как материалы discovery.
+### Запуск существующего PoC на Windows
 
-## Быстрый запуск на Windows
-
-**Требования:** Windows 11 x64, Python 3.12 и Git. Убедитесь, что в систему не помещаются реальные секреты и файлы заказчика до security review.
+Требования: Windows 11 x64, Python 3.12, Git. Настоящие документы заказчиков до security review **не использовать**.
 
 ```powershell
 git clone https://github.com/jetsedpack/construction-docs-saas.git
@@ -59,42 +73,29 @@ cd construction-docs-saas
 git checkout feat/windows-saas-architecture-mvp
 py -3.12 -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install -e ".[desktop,dev]"
+python -m pip install -e ".[desktop,server,dev]"
 python -m construction_docs.desktop
 ```
 
-**CLI** (локально, без сети): `construction-docs import .\example.xlsx`, `construction-docs list`, `construction-docs check <document-id>`.
+CLI: `construction-docs import .\synthetic.xlsx`, `construction-docs list`, `construction-docs check <document-id>`. Без настроенного GPUGO inference endpoint PoC работает офлайн.
 
-**Tests** (включая серверные): `python -m pip install -e ".[server,dev]"` → `python -m pytest -q`. CI проверяет Windows и Linux Python, GUI smoke — на Windows.
+Проверка кода и архитектуры:
 
-**GPUGO**: для включения AI-подсказок задать `GPUGO_INFERENCE_URL` (только HTTPS, путь `/v1/chat/completions`), `GPUGO_ALLOWED_HOSTS`, `GPUGO_INFERENCE_TOKEN` и `GPUGO_MODEL`. **Не указывать реальные токены в Git.** Пока endpoint не предоставлен и не прошёл проверку на стороне GPUGO, приложение работает полностью офлайн по поддержанным локальным функциям.
+```powershell
+python -m pytest -q
+python scripts/check_architecture.py
+```
 
-**Server demo:** `server/gpugo_edge/app.py` предназначен для закрытого loopback стенда с локальным vLLM. **Не публиковать публично без промышленной аутентификации и hardening.**
+[GitHub Actions](.github/workflows/ci.yml) запускает Python-тесты на Windows/Linux, smoke import UI на Windows и отдельную проверку схем/диаграмм/ссылок.
 
-## Реализация связей и нормативов
+## Что появилось сегодня
 
-- [construction_docs/graph.py](construction_docs/graph.py) — первый рабочий граф сущностей и доказательных связей; локальное шифрованное сохранение графа.
-- [construction_docs/norms.py](construction_docs/norms.py) — ручной версионируемый каталог НПА/НТД с проверкой даты действия (автообновление ещё не реализовано).
-- [packaging/build_windows.ps1](packaging/build_windows.ps1) — попытка сборки unsigned developer .exe на Windows, **не production installer**.
-- [GitHub Issues](https://github.com/jetsedpack/construction-docs-saas/issues) — девять детальных задач от discovery до защищённого командного режима, пригодных для работы с Codex по отдельности.
+**18 ноября 2026:** согласована новая A0; уточнена F01 с загрузкой «как ком белья в стиралку», но **типом на каждый файл**; закреплён протокол «структурная копия с расположением и метаданными → обезличенный AI результат → локальное восстановление чувствительных данных»; подготовлены **четыре визуальные схемы**, редактируемый `draw.io`, справочник решений, контрактные JSON Schema, синтетические примеры, рабочий план и проверки архитектуры в CI.
 
-## Безопасность
-Сырые документы, все извлечённые сведения, файлы РД, планы, паспорта и конфигурации оборудования остаются в Windows-контуре. DPAPI защищает Fernet-ключ; файл оригинала и запись БД шифруются, но это **не SQLCipher для всего SQLite**, не защита от скомпрометированного Windows-аккаунта и не готовая enterprise-security. По сети отправляются только категории замечаний, важность и числовые счётчики после ручного подтверждения. Ни модель, ни её ответ не могут изменять исходный документ или удостоверять выполнение работ.
+История задач — [Issues](https://github.com/jetsedpack/construction-docs-saas/issues), изменения к ревью — [PR #1](https://github.com/jetsedpack/construction-docs-saas/pull/1). Это **постановка и инженерные артефакты**, не фиктивный отчёт об уже работающей системе.
 
-**Исходники ЧГЭС в репозиторий не копировались.** В коде и тестах только синтетические документы и обозначения. Перед использованием с реальным заказчиком нужен договор обработки данных, полноценная модель угроз, проверка инфраструктуры и экспертное подтверждение нормативных правил.
+## Дальнейшее чтение
 
-## Что уже работает в коде, а что пока только план
-| Подсистема | Статус |
-| --- | --- |
-| Импорт supported PDF/DOCX/XLSX/CSV | Код PoC, требуется проверка на Windows |
-| Оригиналы и метаданные в локальном DPAPI+Fernet vault | Код PoC, не аудирован |
-| Проверка страниц/полей реестра | Код PoC + unit-тесты |
-| Desktop UI PySide6 / ручное решение ПТО | Код PoC, UX не завершён |
-| Client allowlist gateway / server GPUGO Edge | Код PoC, без production auth |
-| Модель на 4×6000D / real token throughput | План benchmark, не развёрнуто |
-| Автоматизированный нормоконтроль, полная связанная база, ЭП, OCR/DWG | Спроектировано/в backlog |
-| Подписанный .exe/MSI, enterprise team workflow | Не реализовано |
+[Architecture Atlas](diagrams/atlas/README.md) · [Product contract](docs/decisions/2026-11-18-product-contract.md) · [Vertical slice](docs/implementation/11-vertical-slice-plan.md) · [Functional specification](docs/functional/README.md) · [Prior implementation research](docs/implementation/01-architecture.md) · [Security](SECURITY.md).
 
-## Принцип
-**Правило + доказательство + человек, а не «ИИ заменяет инспектора».** Реестр отделяет проектные утверждения, подтверждённые факты и AI-гипотезы, хранит версии нормативов и происхождение данных. На первой стадии ограничиваемся проверяемыми узкими сценариями, а не «всеми ГОСТ и всей стройкой».
-
+**Никаких подлинных документов ЧГЭС, реквизитов контрагентов, ключей, закрытых схем и архивов конфигураций в репозитории нет.** В примерах используются только синтетические данные. ИИ не удостоверяет фактическое выполнение, не создаёт измерения и не подписывает документы за ответственных лиц.
