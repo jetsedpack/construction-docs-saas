@@ -8,7 +8,7 @@
 
 **[Девятистраничная блок-схема draw.io: A0 → F01…F07 → кейс ЧГЭС](diagrams/09-functional-architecture.drawio)** — редактируемые блоки с последовательностью работы, ветвлениями, отказами и различием между работающим PoC и будущими функциями. Это **главный документ**, а не mind map.
 
-**[Функциональный справочник](docs/functional/README.md)** · [Входы, операции, выходы и алгоритмы](docs/functional/01-functional-specification.md) · [Таблица функций и файлов кода](docs/functional/02-code-coverage.md).
+**[Посмотреть блок-схемы прямо на GitHub](docs/functional/flowcharts.md)** · **[Функциональный справочник](docs/functional/README.md)** · [Входы, операции, выходы и алгоритмы](docs/functional/01-functional-specification.md) · [Таблица функций и файлов кода](docs/functional/02-code-coverage.md).
 
 ## Вспомогательные схемы и концепции
 
