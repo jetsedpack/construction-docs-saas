@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gpugo.example.invalid/schema/prepared-document/0.1",
+  "title": "AI prepared document: no real personal identifiers",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "template",
+    "status",
+    "fields",
+    "findings",
+    "coverage"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "draft-0.1"
+    },
+    "template": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "template_id",
+        "version"
+      ],
+      "properties": {
+        "template_id": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "version": {
+          "type": "string",
+          "maxLength": 32
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "incomplete",
+        "needs_more_data"
+      ]
+    },
+    "fields": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "status",
+          "value",
+          "source_refs"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^F-[0-9]{1,8}$"
+          },
+          "status": {
+            "enum": [
+              "filled",
+              "missing",
+              "conflicted",
+              "not_verified",
+              "placeholder"
+            ]
+          },
+          "value": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+            ],
+            "maxLength": 512
+          },
+          "source_refs": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "string",
+              "pattern": "^SRC-[0-9]{1,8}$"
+            }
+          },
+          "rule_ids": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "string",
+              "maxLength": 64
+            }
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 500
+          }
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "category",
+          "field_ids",
+          "status"
+        ],
+        "properties": {
+          "category": {
+            "enum": [
+              "missing_data",
+              "conflict",
+              "revision_mismatch",
+              "rule_mismatch",
+              "unverified",
+              "unparsed"
+            ]
+          },
+          "field_ids": {
+            "type": "array",
+            "maxItems": 50,
+            "items": {
+              "type": "string",
+              "pattern": "^F-[0-9]{1,8}$"
+            }
+          },
+          "status": {
+            "enum": [
+              "open",
+              "resolved",
+              "blocked"
+            ]
+          },
+          "rule_id": {
+            "type": "string",
+            "maxLength": 64
+          }
+        }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "documents_seen",
+        "documents_processed",
+        "documents_blocked"
+      ],
+      "properties": {
+        "documents_seen": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "documents_processed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "documents_blocked": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}
