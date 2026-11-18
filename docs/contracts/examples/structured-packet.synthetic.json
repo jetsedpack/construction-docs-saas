@@ -1,0 +1,74 @@
+{
+  "schema_version": "draft-0.1",
+  "task": "reconcile_and_compose",
+  "template": {
+    "template_id": "id_register",
+    "version": "1"
+  },
+  "documents": [
+    {
+      "id": "DOC-1",
+      "document_type": "working_documentation",
+      "format": "xlsx",
+      "profile_version": "1",
+      "metadata": {
+        "page_count": null,
+        "sheet_count": 3,
+        "revision": "2",
+        "layout_kind": "sheets",
+        "extraction_version": "0.1"
+      },
+      "fields": [
+        {
+          "id": "F-1",
+          "name": "contractor",
+          "value_kind": "alias",
+          "value": "ИП 1849",
+          "location": {
+            "sheet_index": 2,
+            "cell": "D8"
+          },
+          "origin_ref": "SRC-1"
+        },
+        {
+          "id": "F-2",
+          "name": "planned_length",
+          "value_kind": "number",
+          "value": 20,
+          "unit": "m",
+          "location": {
+            "sheet_index": 2,
+            "cell": "F8"
+          },
+          "origin_ref": "SRC-2"
+        },
+        {
+          "id": "F-3",
+          "name": "actual_length",
+          "value_kind": "number",
+          "value": 33,
+          "unit": "m",
+          "location": {
+            "sheet_index": 2,
+            "cell": "G8"
+          },
+          "origin_ref": "SRC-3"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": "F-2",
+      "to": "F-3",
+      "kind": "compares_with"
+    }
+  ],
+  "coverage": {
+    "files_total": 1,
+    "files_processed": 1,
+    "files_blocked": 0,
+    "fields_total": 3,
+    "fields_exported": 3
+  }
+}
