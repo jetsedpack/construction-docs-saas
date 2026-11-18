@@ -63,6 +63,7 @@ class EncryptedVault:
         self.db.execute("CREATE TABLE IF NOT EXISTS documents (id TEXT PRIMARY KEY, payload BLOB NOT NULL)")
         self.db.execute("CREATE TABLE IF NOT EXISTS findings (document_id TEXT PRIMARY KEY, payload BLOB NOT NULL)")
         self.db.execute("CREATE TABLE IF NOT EXISTS audit (event_id TEXT PRIMARY KEY, payload BLOB NOT NULL)")
+        self.db.execute("CREATE TABLE IF NOT EXISTS graph (id TEXT PRIMARY KEY, payload BLOB NOT NULL)")
         self.db.commit()
 
     def _seal(self, data: dict | list) -> bytes:
@@ -153,6 +154,22 @@ class EncryptedVault:
     def events(self) -> list[dict]:
         rows = self.db.execute("SELECT payload FROM audit ORDER BY rowid").fetchall()
         return [self._open(row[0]) for row in rows]
+
+    def save_graph(self, graph) -> None:
+        """Encrypted persistence of the customer-local entity graph."""
+        with self.db:
+            self.db.execute(
+                "INSERT OR REPLACE INTO graph (id, payload) VALUES (?, ?)",
+                ("project_graph", self._seal(graph.to_dict())),
+            )
+        self.audit("graph_saved", {"nodes": len(graph.nodes), "edges": len(graph.edges)})
+
+    def load_graph(self):
+        from .graph import EntityGraph
+        row = self.db.execute("SELECT payload FROM graph WHERE id=?", ("project_graph",)).fetchone()
+        if row is None:
+            return EntityGraph()
+        return EntityGraph.from_dict(self._open(row[0]))
 
     def close(self) -> None:
         self.db.close()
