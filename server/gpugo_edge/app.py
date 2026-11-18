@@ -14,6 +14,8 @@ from urllib.parse import urlparse
 
 import httpx
 from fastapi import FastAPI, Header, HTTPException
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field
 
 from construction_docs.gateway import (
@@ -21,6 +23,12 @@ from construction_docs.gateway import (
 )
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
+
+
+@app.exception_handler(RequestValidationError)
+async def safe_validation_error(_request, _exc):
+    # Never echo a rejected request body or raw prompt in validation errors.
+    return JSONResponse(status_code=422, content={"detail": "Invalid request schema"})
 
 
 class ChatMessage(BaseModel):
@@ -46,8 +54,8 @@ def _require_key(auth: str | None) -> None:
 
 
 def validate_safe_request(req: CompletionRequest) -> dict:
-    if [m.role for m in req.messages] != ["system", "user"]:
-        raise HTTPException(status_code=422, detail="Invalid message roles")
+    if [m.role for m in req.messages] != ["system", "user"] or req.messages[0].content != SYSTEM_PROMPT:
+        raise HTTPException(status_code=422, detail="Invalid message roles or system policy")
     if req.stream or req.temperature != 0 or req.max_tokens > 400:
         raise HTTPException(status_code=422, detail="Unsupported inference settings")
     allowed_model = os.environ.get("GPUGO_MODEL", "construction-analyzer")
