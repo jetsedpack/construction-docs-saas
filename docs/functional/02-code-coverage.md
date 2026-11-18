@@ -5,9 +5,9 @@
 | ID | Подфункция | Код сейчас | Текущий статус | Что писать следующим |
 | --- | --- | --- | --- | --- |
 | F00.1 | Контекст проекта и права | `construction_docs/desktop.py`, `vault.py` | Частично: один Windows-пользователь | ProjectContext, project_id, scopes, RBAC для командного этапа |
-| F01.1 | Пакетная загрузка всей папки + таблица выбора типа **каждого** файла | `desktop.py::import_document`, `vault.py::import_file` | Только импорт одного файла; новая функция отсутствует | recursive batch importer, file manifest, per-file dropdown из DocumentType каталога |
-| F01.2 | Парсинг по выбранному предметному типу + формату | `ingest.py::extract` | Базовые парсеры без DocumentType profiles | ParserProfile, ExtractionSchema, SourceFragment, локальный OCR/графика для расширенного контура |
-| F01.3 | Шифрование оригинала | `vault.py::EncryptedVault` | Есть в PoC DPAPI+Fernet | восстановление ключей, TTL/retention, real threat review |
+| F01.1 | Пакетная загрузка + индивидуальный выбор типа **каждого** файла | `desktop.py::import_batch`, `batch.py::discover_files`, `document_types.py`, `vault.py::stage_file/classify_document` | **Реализована первая стадия PoC**: загрузка дерева, staging оригинала, выбор типа в QComboBox, локальный парсинг после выбора | Persist full project tree + file manifest, type-specific extraction profiles, UX, security review |
+| F01.2 | Парсинг после выбора предметного типа; формат отдельно | `vault.py::classify_document`, `ingest.py::extract` | **Частично:** тип выбирается до разбора, но парсер пока определяется расширением, а не profile per type | ParserProfile, ExtractionSchema, SourceFragment, локальный OCR/графика |
+| F01.3 | Шифрование оригинала до классификации | `vault.py::stage_file`, `EncryptedVault` | Есть в PoC DPAPI+Fernet; неизвестные форматы сохраняются и остаются blocked | восстановление ключей, backup, hardening |
 | F01.4 | Псевдонимизация и обратная сборка безопасного пакета | — | Не реализовано | alias vault, SensitiveFieldPolicy, structured JSON, fail-closed и packet inspection |
 | F01.5 | Усиленный защищённый контур | — | Не реализовано | сканы/вложения/metadata/hidden Excel, sandbox, re-identification tests, coverage |
 | F02.1 | Структурированные Claim | `models.py::ImportedDocument` | Нет — только текст/таблицы | новые DTO, provenance, parse templates |
