@@ -24,8 +24,10 @@
 | F05.1 | Найти и показать замечания | `desktop.py::display_issues` | Есть в PoC | evidence side-by-side, сортировки, issue grouping |
 | F05.2 | Решение человека | `desktop.py::review_selected` | Простая запись audit | workflow, role checks, change/version approval |
 | F06.1 | Состав и шаблоны ИД | — | Нет | формализовать перечень конкретного объекта |
-| F06.2 | Генерация документов/реестра | — | Нет | DOCX/XLSX templating + preview + hash manifest |
-| F06.3 | Электронная подпись | — | Нет | отдельное юридическое/техническое проектирование |
+| F06.2 | Составление обезличенного структурированного вывода ИИ по шаблонам/правилам коробки | — | Нет | JSON schema, source provenance, placeholder fields, validated AI edits |
+| F06.3 | Локальная адресная подстановка закрытых реквизитов через шлюз | — | Нет | alias resolver, strict field IDs, metadata policy, no global string replacement |
+| F06.4 | Рендер готовых DOCX/XLSX/PDF и реестра ИД | — | Нет | локальный renderer по версиям шаблонов, preview + hash manifest |
+| F06.5 | Проверка/утверждение только готового финального пакета; ЭП отдельно | — | Нет | engineer final review, signed package flow; отдельное юридическое/техническое проектирование |
 | F07.1 | Реестр редакций норм | `norms.py` | Есть локально, вручную | тесты применимости на реальные даты |
 | F07.2 | Подписка на правовые источники | — | Нет | source adapters + лицензии + нормоконтроль |
 | X01.1 | Локальная история | `vault.py::audit` | Есть в PoC | tamper evidence, external event collector для enterprise |
