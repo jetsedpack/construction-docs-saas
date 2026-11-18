@@ -59,6 +59,13 @@ python -m construction_docs.desktop
 
 **Server demo:** `server/gpugo_edge/app.py` предназначен для закрытого loopback стенда с локальным vLLM. **Не публиковать публично без промышленной аутентификации и hardening.**
 
+## Реализация связей и нормативов
+
+- [construction_docs/graph.py](construction_docs/graph.py) — первый рабочий граф сущностей и доказательных связей; локальное шифрованное сохранение графа.
+- [construction_docs/norms.py](construction_docs/norms.py) — ручной версионируемый каталог НПА/НТД с проверкой даты действия (автообновление ещё не реализовано).
+- [packaging/build_windows.ps1](packaging/build_windows.ps1) — попытка сборки unsigned developer .exe на Windows, **не production installer**.
+- [GitHub Issues](https://github.com/jetsedpack/construction-docs-saas/issues) — девять детальных задач от discovery до защищённого командного режима, пригодных для работы с Codex по отдельности.
+
 ## Безопасность
 Сырые документы, все извлечённые сведения, файлы РД, планы, паспорта и конфигурации оборудования остаются в Windows-контуре. DPAPI защищает Fernet-ключ; файл оригинала и запись БД шифруются, но это **не SQLCipher для всего SQLite**, не защита от скомпрометированного Windows-аккаунта и не готовая enterprise-security. По сети отправляются только категории замечаний, важность и числовые счётчики после ручного подтверждения. Ни модель, ни её ответ не могут изменять исходный документ или удостоверять выполнение работ.
 
