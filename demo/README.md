@@ -2,17 +2,8 @@
 
 ## Открыть демо
 
-[Откройте демо](https://construction-docs-demo.vkaravaev.chatgpt.site/) и войдите через ChatGPT.
-
-Для локального запуска выполните команды:
-
-```sh
-git clone --branch codex/clickable-id-mvp https://github.com/jetsedpack/construction-docs-saas.git
-cd construction-docs-saas
-python -m http.server 8000 --bind 127.0.0.1 --directory demo
-```
-
-Откройте [localhost:8000](http://localhost:8000).
+1. Откройте [demo/index.html](index.html) на GitHub и нажмите **Download raw file** (иконка скачивания над кодом).
+2. Откройте скачанный `index.html` в браузере. Демо работает локально, без интернета и входа в аккаунт.
 
 ## Собрать комплект ИД
 
