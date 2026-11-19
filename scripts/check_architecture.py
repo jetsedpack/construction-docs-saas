@@ -126,6 +126,127 @@ def check_contracts() -> None:
         raise ContractError("Document type must not grant export permission")
 
 
+
+def _strict_cross(a: tuple, b: tuple) -> bool:
+    """Detect crossing strictly within both orthogonal segments (not shared tips)."""
+    p, q = a
+    r, s = b
+    if p[0] == q[0] and r[1] == s[1]:
+        x, y = p[0], r[1]
+        return (
+            min(r[0], s[0]) < x < max(r[0], s[0])
+            and min(p[1], q[1]) < y < max(p[1], q[1])
+        )
+    if p[1] == q[1] and r[0] == s[0]:
+        return _strict_cross(b, a)
+    return False
+
+
+def check_layout_geometry() -> None:
+    """Enforce collision-free sources for both SVG previews and editable draw.io.
+
+    The asset compiler shares the same numeric routes across both file types.
+    Cards have an 5px safety inset; crossings/overflow fail CI.
+    """
+    atlas = json.loads((ATLAS / "source.json").read_text(encoding="utf-8"))
+    from xml.sax.saxutils import escape as xml_escape
+
+    for page in atlas["pages"]:
+        title = page["id"]
+        nodes = page["nodes"]
+        by_id = {node["id"]: node for node in nodes}
+        if len(by_id) != len(nodes):
+            raise ContractError(f"{title}: duplicate node ID")
+        if len(page["wires"]) < 6:
+            raise ContractError(f"{title}: incomplete connections")
+
+        # All cards have enough breathing room and stay within printable canvas.
+        for node in nodes:
+            x, y, w, h = (node[k] for k in ("x", "y", "w", "h"))
+            if x < 65 or y < 180 or x + w > page["w"] - 55 or y + h > page["h"] - 35:
+                raise ContractError(f"{title}/{node['id']}: outside page")
+            size = 13 if w <= 180 else 18
+            body_size = 12 if w <= 180 else 15
+            room = w - (28 if w <= 180 else 36)
+            for text, font_size in [(node["title"], size)] + [
+                (v, body_size) for v in node["body"]
+            ]:
+                estimated = sum(
+                    (0.28 if ch == " " else 0.69 if ch in "ABCDEFGHIJKLMNOPQRSTUVWXYZЖШЩМЫЮОФ"
+                     else 0.55) for ch in text
+                ) * font_size
+                if estimated > room:
+                    raise ContractError(f"{title}/{node['id']}: text may overflow: {text}")
+        for i, a in enumerate(nodes):
+            for b in nodes[i + 1:]:
+                if (a["x"] < b["x"] + b["w"] and a["x"] + a["w"] > b["x"]
+                    and a["y"] < b["y"] + b["h"] and a["y"] + a["h"] > b["y"]):
+                    raise ContractError(f"{title}: blocks overlap {a['id']}/{b['id']}")
+
+        segments: list[tuple[str, tuple, tuple]] = []
+        for edge in page["wires"]:
+            if edge["from"] not in by_id or edge["to"] not in by_id:
+                raise ContractError(f"{title}: endpoint missing")
+            points = edge["points"]
+            if len(points) < 2:
+                raise ContractError(f"{title}: wire without route")
+            eid = edge["from"] + "->" + edge["to"]
+            for start, end in zip(points, points[1:]):
+                x1, y1 = start
+                x2, y2 = end
+                if x1 != x2 and y1 != y2:
+                    raise ContractError(f"{title}/{eid}: diagonal route")
+                for block in nodes:
+                    if block["id"] in (edge["from"], edge["to"]):
+                        continue
+                    left = block["x"] + 5
+                    right = block["x"] + block["w"] - 5
+                    top = block["y"] + 5
+                    bottom = block["y"] + block["h"] - 5
+                    if x1 == x2:
+                        hit = (
+                            left < x1 < right
+                            and max(min(y1, y2), top) < min(max(y1, y2), bottom)
+                        )
+                    else:
+                        hit = (
+                            top < y1 < bottom
+                            and max(min(x1, x2), left) < min(max(x1, x2), right)
+                        )
+                    if hit:
+                        raise ContractError(f"{title}: wire {eid} enters {block['id']}")
+                for other_eid, other_start, other_end in segments:
+                    if other_eid != eid and _strict_cross((start, end), (other_start, other_end)):
+                        raise ContractError(f"{title}: crossing arrows {eid} vs {other_eid}")
+                segments.append((eid, start, end))
+
+        # Check the generated previews contain all authored card labels.
+        svg_names = {
+            "a0": "a0-system.svg",
+            "f01": "f01-intake.svg",
+            "roundtrip": "f04-f06-roundtrip.svg",
+            "f07": "f07-norms.svg",
+        }
+        svg = (ATLAS / svg_names[title]).read_text(encoding="utf-8")
+        for node in nodes:
+            if xml_escape(node["title"]) not in svg:
+                raise ContractError(f"{title}: SVG missing card {node['id']}")
+        diagram = next(
+            (d for d in ET.parse(ATLAS / "architecture.drawio").getroot().findall("diagram")
+             if d.attrib.get("id") == title),
+            None,
+        )
+        if diagram is None:
+            raise ContractError(f"{title}: missing editable diagram")
+        cells = diagram.findall("mxGraphModel/root/mxCell")
+        all_ids = {cell.attrib.get("id") for cell in cells}
+        if any(node["id"] not in all_ids for node in nodes):
+            raise ContractError(f"{title}: draw.io lost editable card IDs")
+        wires = [cell for cell in cells if cell.attrib.get("edge") == "1"]
+        if len(wires) != len(page["wires"]):
+            raise ContractError(f"{title}: draw.io lost arrows")
+
+
 def check_diagrams() -> None:
     source = json.loads((ATLAS / "source.json").read_text(encoding="utf-8"))
     design_pages = source["pages"]
@@ -174,6 +295,7 @@ def check_links() -> None:
 def run() -> None:
     check_contracts()
     check_diagrams()
+    check_layout_geometry()
     check_links()
     print("OK: structured contracts, 4 draw.io pages, 4 compiled SVGs, document catalog and links")
 
