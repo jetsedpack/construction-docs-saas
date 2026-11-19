@@ -34,6 +34,7 @@
 <path d="M1510 905 L1455 905 L1455 775 L710 775 L710 810" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
 <path d="M875 895 L950 895" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
 <path d="M1115 980 L1115 1160" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)" stroke-dasharray="9 8"/>
+<path d="M1115 485 L1115 445 L1592 445 L1592 485" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)" stroke-dasharray="9 8"/>
 <path d="M82 1295 H2080" stroke="#D9DDDC" stroke-width="2"/>
 <text x="82" y="1321" font-size="15" fill="#69777D">Согласованная архитектура, а не готовый SaaS · 19.11.2026</text>
 </svg>
