@@ -9,6 +9,10 @@ Windows-приложение с изолированной «коробкой» 
 
 ---
 
+## Браузерное демо
+
+[Открыть «Помощник ПТО»](https://construction-docs-demo.vkaravaev.chatgpt.site/) · [Инструкция по запуску и работе](demo/README.md)
+
 ## 01 / Архитектура за одну минуту
 
 ![A0 — изолированная коробка, шлюз и GPUGO](diagrams/atlas/a0-system.svg)
