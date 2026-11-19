@@ -1,80 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1020" role="img" aria-label="F01 · ВЕСЬ ПАКЕТ РАЗОМ, ТИП — КАЖДОМУ ФАЙЛУ">
-<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#829B9F"/></marker><filter id="shadow" x="-10%" y="-10%" width="130%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity=".055"/></filter></defs>
-<style><![CDATA[
-.title{font:700 31px Arial,sans-serif;fill:#1A1C1D} .subtitle{font:16px Arial,sans-serif;fill:#6B7478}
-.caps{font:700 14px Arial,sans-serif;letter-spacing:1.1px;fill:#34444E}
-.nt{font:700 18px Arial,sans-serif;fill:#1A1C1D} .nb{font:15px Arial,sans-serif;fill:#34444E} .note{font:14px Arial,sans-serif;fill:#6B7478}
-.edge{fill:none;stroke:#9BA8AA;stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round} .dash{stroke-dasharray:7 7}
-]]></style>
-<rect width="1800" height="1020" fill="#F7F3EE"/>
-<rect x="65" y="49" width="10" height="75" rx="5" fill="#67D6EF"/>
-<text class="title" x="99" y="87">F01 · ВЕСЬ ПАКЕТ РАЗОМ, ТИП — КАЖДОМУ ФАЙЛУ</text>
-<text class="subtitle" x="99" y="122">Единый сценарий в MVP и защищённом контуре • формат ≠ тип документа</text>
-<path d="M65 150 H1735" stroke="#DBDFDE" stroke-width="1.6"/>
-<rect x="60" y="160" width="1673" height="752" rx="22" fill="#EDF2EF" stroke="#B8CBC6" stroke-width="2.5"/>
-<text class="caps" x="86" y="195">01  /  ИЗОЛИРОВАННАЯ ПОДГОТОВКА</text>
-<path class="edge " d="M394 310 L439 310"  marker-end="url(#arrow)"/>
-<path class="edge " d="M759 310 L805 310"  marker-end="url(#arrow)"/>
-<path class="edge dash" d="M943 380 L943 460 L250 460 L250 510"  marker-end="url(#arrow)"/>
-<path class="edge " d="M415 592 L459 592"  marker-end="url(#arrow)"/>
-<path class="edge " d="M789 592 L836 592"  marker-end="url(#arrow)"/>
-<path class="edge " d="M1166 592 L1210 592"  marker-end="url(#arrow)"/>
-<path class="edge " d="M1375 675 L1375 713 L1001 713 L1001 755"  marker-end="url(#arrow)"/>
-<path class="edge " d="M836 805 L789 805" stroke="#D18C85" marker-end="url(#arrow)"/>
-<path class="edge " d="M1166 805 L1210 805"  marker-end="url(#arrow)"/>
-<rect x="85" y="247" width="309" height="133" rx="14" fill="#E1F3F7" stroke="#9ECEDA" stroke-width="2" filter="url(#shadow)"/>
-<rect x="85" y="262" width="6" height="103" rx="3" fill="#67D6EF"/>
-<text class="nt" x="106" y="285">01 · ПАКЕТ РД</text>
-<text class="nb" x="106" y="319">Папка с вложенными файлами</text>
-<text class="nb" x="106" y="345">Сохраняем всё без сортировки</text>
-<rect x="439" y="247" width="320" height="133" rx="14" fill="#EDE7F5" stroke="#C0B2D7" stroke-width="2" filter="url(#shadow)"/>
-<rect x="439" y="262" width="6" height="103" rx="3" fill="#C5B7E7"/>
-<text class="nt" x="460" y="285">02 · ОРИГИНАЛЫ</text>
-<text class="nb" x="460" y="319">Шифрованное хранилище</text>
-<text class="nb" x="460" y="345">hash · версии · manifest</text>
-<rect x="805" y="247" width="785" height="133" rx="14" fill="#E3F5E6" stroke="#AFD4B6" stroke-width="2" filter="url(#shadow)"/>
-<rect x="805" y="262" width="6" height="103" rx="3" fill="#87E481"/>
-<text class="nt" x="826" y="285">03 · ТАБЛИЦА ФАЙЛОВ</text>
-<text class="nb" x="826" y="319">Каждая строка: имя · формат · ТИП [▼] · статус</text>
-<text class="nb" x="826" y="345">Инженер выбирает тип отдельно для каждого файла</text>
-<rect x="85" y="510" width="330" height="165" rx="14" fill="#E3F5E6" stroke="#AFD4B6" stroke-width="2" filter="url(#shadow)"/>
-<rect x="85" y="525" width="6" height="135" rx="3" fill="#87E481"/>
-<text class="nt" x="106" y="548">04 · ПРОФИЛЬ ТИПА</text>
-<text class="nb" x="106" y="582">DocumentType → parser profile</text>
-<text class="nb" x="106" y="608">схема полей + политика доступа</text>
-<rect x="459" y="510" width="330" height="165" rx="14" fill="#E1F3F7" stroke="#9ECEDA" stroke-width="2" filter="url(#shadow)"/>
-<rect x="459" y="525" width="6" height="135" rx="3" fill="#67D6EF"/>
-<text class="nt" x="480" y="548">05 · ЛОКАЛЬНЫЙ ПАРСЕР</text>
-<text class="nb" x="480" y="582">Поля · таблицы · координаты</text>
-<text class="nb" x="480" y="608">страницы · связи · metadata</text>
-<rect x="836" y="510" width="330" height="165" rx="14" fill="#EDE7F5" stroke="#C0B2D7" stroke-width="2" filter="url(#shadow)"/>
-<rect x="836" y="525" width="6" height="135" rx="3" fill="#C5B7E7"/>
-<text class="nt" x="857" y="548">06 · ПСЕВДОНИМЫ</text>
-<text class="nb" x="857" y="582">ИП Иванов → ИП 1849</text>
-<text class="nb" x="857" y="608">словари остаются локально</text>
-<rect x="1210" y="510" width="330" height="165" rx="14" fill="#FCE9E0" stroke="#E5BAA5" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1210" y="525" width="6" height="135" rx="3" fill="#F0AE99"/>
-<text class="nt" x="1231" y="548">07 · JSON-КОПИЯ</text>
-<text class="nb" x="1231" y="582">Все структурные поля + связи</text>
-<text class="nb" x="1231" y="608">разрешённые метаданные</text>
-<rect x="459" y="755" width="330" height="110" rx="14" fill="#FCE9E0" stroke="#E5BAA5" stroke-width="2" filter="url(#shadow)"/>
-<rect x="459" y="770" width="6" height="80" rx="3" fill="#F0AE99"/>
-<text class="nt" x="480" y="793">НЕ ГОТОВО К ПЕРЕДАЧЕ</text>
-<text class="nb" x="480" y="827">Нет типа / OCR / риск утечки</text>
-<rect x="836" y="755" width="330" height="110" rx="14" fill="#FAF0D4" stroke="#D9BC7D" stroke-width="2" filter="url(#shadow)"/>
-<rect x="836" y="770" width="6" height="80" rx="3" fill="#E7C66B"/>
-<text class="nt" x="857" y="793">08 · ПРОВЕРКА ШЛЮЗА</text>
-<text class="nb" x="857" y="827">Покрытие, политика, метаданные</text>
-<rect x="1210" y="755" width="330" height="110" rx="14" fill="#E3F5E6" stroke="#AFD4B6" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1210" y="770" width="6" height="80" rx="3" fill="#87E481"/>
-<text class="nt" x="1231" y="793">09 · НА GPUGO</text>
-<text class="nb" x="1231" y="827">Только валидированный JSON</text>
-<text x="951" y="451" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">выбранный тип</text>
-<text x="1383" y="704" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">анализ безопасности</text>
-<text x="844" y="796" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">нет</text>
-<text x="1174" y="796" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">да</text>
-<text x="84" y="960" font-family="Arial,sans-serif" font-size="16" fill="#6B7478">Важно: тип выбирает инженер. Выбранный тип управляет парсером, но не даёт права автоматически отправлять содержание.</text>
-<path d="M65 942 H1735" stroke="#DBDFDE" stroke-width="1.4"/>
-<text x="65" y="977" font-family="Arial,sans-serif" font-size="13" fill="#6B7478">СОГЛАСОВАНО: массовая загрузка + ручной выбор типа каждого файла  ·  РЕАЛИЗАЦИЯ: будущая</text>
-<text x="1735" y="977" font-family="Arial,sans-serif" text-anchor="end" font-size="13" fill="#6B7478">GPUGO / CONSTRUCTION DOCS · 18.11.2026</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2160 1340" role="img" aria-label="F01  /  ЗАГРУЗКА ВСЕГО ПАКЕТА">
+<defs><marker id="tip" markerWidth="11" markerHeight="11" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 1 L10 5 L0 9 Z" fill="#718F99"/></marker><marker id="tip-red" markerWidth="11" markerHeight="11" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 1 L10 5 L0 9 Z" fill="#C88B84"/></marker></defs>
+<style><![CDATA[text{font-family:Arial,'Liberation Sans',sans-serif;letter-spacing:.02px;}]]></style>
+<rect width="2160" height="1340" fill="#F7F3EE"/>
+<rect x="82" y="48" width="10" height="86" rx="5" fill="#67D6EF"/>
+<text x="119" y="89" font-weight="700" font-size="35" fill="#1A1C1D">F01  /  ЗАГРУЗКА ВСЕГО ПАКЕТА</text>
+<text x="119" y="129" font-size="19" fill="#69777D">Инженер выбирает тип КАЖДОГО файла · сырьё не покидает «коробку»</text>
+<path d="M82 156 H2080" stroke="#D9DDDC" stroke-width="2"/>
+<rect x="75" y="215" width="1970" height="290" rx="26" fill="#EDF3F0" stroke="#B7CFC8" stroke-width="2.5"/>
+<text x="100" y="253" font-size="17" letter-spacing="1" font-weight="700" fill="#34444E">01  /  ЗАГРУЗКА И КЛАССИФИКАЦИЯ</text>
+<rect x="75" y="570" width="1970" height="315" rx="26" fill="#EDF3F0" stroke="#B7CFC8" stroke-width="2.5"/>
+<text x="100" y="608" font-size="17" letter-spacing="1" font-weight="700" fill="#34444E">02  /  ЛОКАЛЬНАЯ ОБРАБОТКА</text>
+<rect x="75" y="923" width="1970" height="305" rx="26" fill="#FBF0E8" stroke="#E4C1A7" stroke-width="2.5"/>
+<text x="100" y="961" font-size="17" letter-spacing="1" font-weight="700" fill="#34444E">03  /  ДОПУСК ШЛЮЗА</text>
+<g class="node"><path d="M 116 285 H 444 L 465 306 V 431 Q 465 445 451 445 H 114 Q 100 445 100 431 V 301 Q 100 285 116 285 Z" fill="#E3F4FA" stroke="#AED4E1" stroke-width="2"/><path d="M 444 285 V 306 H 465" fill="none" stroke="#AED4E1" stroke-width="2"/><rect x="102" y="305" width="6" height="120" rx="3" fill="#67D6EF"/><text x="124" y="328" font-size="18" font-weight="700" fill="#1A1C1D">ВСЯ ПАПКА РАЗОМ</text><text x="124" y="370" font-size="15" fill="#34444E">Файлы с вложенными папками</text><text x="124" y="395" font-size="15" fill="#34444E">Ничего вручную не сортируем</text></g>
+<g class="node"><rect x="600" y="285" width="365" height="160" rx="15" fill="#EDE8F5" stroke="#C6B8D9" stroke-width="2"/><path d="M 602 312 Q 782.5 332 963 312" fill="none" stroke="#C6B8D9" stroke-width="1.8" opacity=".6"/><rect x="602" y="305" width="6" height="120" rx="3" fill="#C5B7E7"/><text x="624" y="328" font-size="18" font-weight="700" fill="#1A1C1D">ЗАКРЫТЫЙ АРХИВ</text><text x="624" y="370" font-size="15" fill="#34444E">Оригиналы и хеши</text><text x="624" y="395" font-size="15" fill="#34444E">Версии и статусы импорта</text></g>
+<g class="node"><rect x="1100" y="285" width="365" height="160" rx="15" fill="#E4F5E8" stroke="#A8D2B0" stroke-width="2"/><rect x="1102" y="305" width="6" height="120" rx="3" fill="#87E481"/><text x="1124" y="328" font-size="18" font-weight="700" fill="#1A1C1D">ТИП КАЖДОГО ФАЙЛА</text><text x="1124" y="370" font-size="15" fill="#34444E">Свой выпадающий список</text><text x="1124" y="395" font-size="15" fill="#34444E">Инженер делает выбор</text></g>
+<g class="node"><rect x="1600" y="285" width="365" height="160" rx="15" fill="#E3F4FA" stroke="#AED4E1" stroke-width="2"/><rect x="1602" y="305" width="6" height="120" rx="3" fill="#67D6EF"/><text x="1624" y="328" font-size="18" font-weight="700" fill="#1A1C1D">ЛОКАЛЬНЫЙ ПАРСЕР</text><text x="1624" y="370" font-size="15" fill="#34444E">Формат + выбранный тип</text><text x="1624" y="395" font-size="15" fill="#34444E">Таблицы, страницы, ячейки</text></g>
+<g class="node"><rect x="1600" y="650" width="365" height="170" rx="15" fill="#E3F4FA" stroke="#AED4E1" stroke-width="2"/><rect x="1602" y="670" width="6" height="130" rx="3" fill="#67D6EF"/><text x="1624" y="693" font-size="18" font-weight="700" fill="#1A1C1D">ПОЛЯ И МЕТАДАННЫЕ</text><text x="1624" y="735" font-size="15" fill="#34444E">Позиции, координаты, редакции</text><text x="1624" y="760" font-size="15" fill="#34444E">Все связи и пропуски</text></g>
+<g class="node"><rect x="1100" y="650" width="365" height="170" rx="15" fill="#EDE8F5" stroke="#C6B8D9" stroke-width="2"/><path d="M 1102 677 Q 1282.5 697 1463 677" fill="none" stroke="#C6B8D9" stroke-width="1.8" opacity=".6"/><rect x="1102" y="670" width="6" height="130" rx="3" fill="#C5B7E7"/><text x="1124" y="693" font-size="18" font-weight="700" fill="#1A1C1D">ОБЕЗЛИЧИВАНИЕ</text><text x="1124" y="735" font-size="15" fill="#34444E">Сквозные псевдонимы</text><text x="1124" y="760" font-size="15" fill="#34444E">Словарь только в Windows</text></g>
+<g class="node"><rect x="600" y="650" width="365" height="170" rx="15" fill="#E4F5E8" stroke="#A8D2B0" stroke-width="2"/><rect x="602" y="670" width="6" height="130" rx="3" fill="#87E481"/><text x="624" y="693" font-size="18" font-weight="700" fill="#1A1C1D">СТРУКТУРНАЯ КОПИЯ</text><text x="624" y="735" font-size="15" fill="#34444E">Все поля, связи, расположение</text><text x="624" y="760" font-size="15" fill="#34444E">Безопасные метаданные</text></g>
+<g class="node"><path d="M 115 650 H 450 L 465 665 V 805 L 450 820 H 115 L 100 805 V 665 Z" fill="#FBF2D8" stroke="#DEC58B" stroke-width="2"/><rect x="102" y="670" width="6" height="130" rx="3" fill="#E7C66B"/><text x="124" y="693" font-size="18" font-weight="700" fill="#1A1C1D">КОНТРОЛЬ ШЛЮЗА</text><text x="124" y="735" font-size="15" fill="#34444E">Проверка политики и охвата</text><text x="124" y="760" font-size="15" fill="#34444E">Неизвестное запрещаем</text></g>
+<g class="node"><path d="M 115 995 H 450 L 465 1010 V 1140 L 450 1155 H 115 L 100 1140 V 1010 Z" fill="#FCE9E3" stroke="#EAB8A8" stroke-width="2"/><rect x="102" y="1015" width="6" height="120" rx="3" fill="#F0AE99"/><text x="124" y="1038" font-size="18" font-weight="700" fill="#1A1C1D">BLOCKED / УТОЧНИТЬ</text><text x="124" y="1080" font-size="15" fill="#34444E">Исходник остаётся локально</text><text x="124" y="1105" font-size="15" fill="#34444E">Причина видна инженеру</text></g>
+<g class="node"><rect x="600" y="995" width="365" height="160" rx="15" fill="#E4F5E8" stroke="#A8D2B0" stroke-width="2"/><rect x="602" y="1015" width="6" height="120" rx="3" fill="#87E481"/><text x="624" y="1038" font-size="18" font-weight="700" fill="#1A1C1D">РАЗРЕШЁННЫЙ JSON</text><text x="624" y="1080" font-size="15" fill="#34444E">Проверенная структура</text><text x="624" y="1105" font-size="15" fill="#34444E">Никаких сырых оригиналов</text></g>
+<g class="node"><rect x="1100" y="995" width="365" height="160" rx="15" fill="#FCE9E3" stroke="#EAB8A8" stroke-width="2"/><rect x="1102" y="1015" width="6" height="120" rx="3" fill="#F0AE99"/><text x="1124" y="1038" font-size="18" font-weight="700" fill="#1A1C1D">ИИ GPUGO</text><text x="1124" y="1080" font-size="15" fill="#34444E">Анализ по правилам</text><text x="1124" y="1105" font-size="15" fill="#34444E">Только доступный контекст</text></g>
+<g class="node"><rect x="1600" y="995" width="365" height="160" rx="15" fill="#E3F4FA" stroke="#AED4E1" stroke-width="2"/><rect x="1602" y="1015" width="6" height="120" rx="3" fill="#67D6EF"/><text x="1624" y="1038" font-size="18" font-weight="700" fill="#1A1C1D">РАБОЧАЯ ВЕРСИЯ</text><text x="1624" y="1080" font-size="15" fill="#34444E">Ответ обратно в «коробку»</text><text x="1624" y="1105" font-size="15" fill="#34444E">Оригиналы неизменны</text></g>
+<path d="M465 365 L600 365" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M965 365 L1100 365" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1465 365 L1600 365" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1782 445 L1782 650" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1600 735 L1465 735" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1100 735 L965 735" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M600 735 L465 735" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M195 820 L195 995" fill="none" stroke="#C88B84" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip-red)"/>
+<path d="M385 820 L385 905 L780 905 L780 995" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)" stroke-dasharray="9 8"/>
+<path d="M965 1075 L1100 1075" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1465 1075 L1600 1075" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M82 1295 H2080" stroke="#D9DDDC" stroke-width="2"/>
+<text x="82" y="1321" font-size="15" fill="#69777D">MVP: staging и выбор типа · содержательное обезличивание пока не реализовано</text>
 </svg>

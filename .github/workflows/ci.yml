@@ -50,5 +50,5 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Check draw.io, compiled SVG, schema examples and links
+      - name: Check diagram geometry, text fit, no crossings, JSON schemas and links
         run: python scripts/check_architecture.py

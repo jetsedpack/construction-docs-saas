@@ -1,105 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1020" role="img" aria-label="A0 · ЗАЩИЩЁННАЯ «КОРОБКА»">
-<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#829B9F"/></marker><filter id="shadow" x="-10%" y="-10%" width="130%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity=".055"/></filter></defs>
-<style><![CDATA[
-.title{font:700 31px Arial,sans-serif;fill:#1A1C1D} .subtitle{font:16px Arial,sans-serif;fill:#6B7478}
-.caps{font:700 14px Arial,sans-serif;letter-spacing:1.1px;fill:#34444E}
-.nt{font:700 18px Arial,sans-serif;fill:#1A1C1D} .nb{font:15px Arial,sans-serif;fill:#34444E} .note{font:14px Arial,sans-serif;fill:#6B7478}
-.edge{fill:none;stroke:#9BA8AA;stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round} .dash{stroke-dasharray:7 7}
-]]></style>
-<rect width="1800" height="1020" fill="#F7F3EE"/>
-<rect x="65" y="49" width="10" height="75" rx="5" fill="#67D6EF"/>
-<text class="title" x="99" y="87">A0 · ЗАЩИЩЁННАЯ «КОРОБКА»</text>
-<text class="subtitle" x="99" y="122">Главный контур существует до загрузки объекта • GPUGO получает только разрешённую структуру</text>
-<path d="M65 150 H1735" stroke="#DBDFDE" stroke-width="1.6"/>
-<rect x="62" y="335" width="1217" height="604" rx="22" fill="#EDF2EF" stroke="#B8CBC6" stroke-width="2.5"/>
-<text class="caps" x="88" y="370">01  /  ДОВЕРЕННЫЙ WINDOWS-КОНТУР</text>
-<rect x="1402" y="345" width="332" height="570" rx="22" fill="#FAF0E8" stroke="#E6C4AA" stroke-width="2.5"/>
-<text class="caps" x="1428" y="380">02  /  GPUGO · INFERENCE</text>
-<path class="edge " d="M270 278 L270 420"  marker-end="url(#arrow)"/>
-<path class="edge dash" d="M700 278 L700 318 L643 318 L643 420"  marker-end="url(#arrow)"/>
-<path class="edge " d="M807 501 L852 501"  marker-end="url(#arrow)"/>
-<path class="edge " d="M265 582 L265 680"  marker-end="url(#arrow)"/>
-<path class="edge dash" d="M429 762 L443 762 L443 905 L1292 905 L1292 805"  marker-end="url(#arrow)"/>
-<path class="edge " d="M1383 679 L1410 679 L1410 511 L1441 511"  marker-end="url(#arrow)"/>
-<path class="edge " d="M1568 592 L1568 636"  marker-end="url(#arrow)"/>
-<path class="edge " d="M1441 726 L1383 726"  marker-end="url(#arrow)"/>
-<path class="edge dash" d="M1203 728 L1120 728 L1120 886 L643 886 L643 843"  marker-end="url(#arrow)"/>
-<path class="edge " d="M807 760 L852 760"  marker-end="url(#arrow)"/>
-<path class="edge " d="M1192 765 L1225 765 L1225 951 L1752 951 L1752 219 L1734 219"  marker-end="url(#arrow)"/>
-<rect x="88" y="162" width="362" height="116" rx="14" fill="#E1F3F7" stroke="#9ECEDA" stroke-width="2" filter="url(#shadow)"/>
-<rect x="88" y="177" width="6" height="86" rx="3" fill="#67D6EF"/>
-<text class="nt" x="109" y="200">ИСТОЧНИКИ ОБЪЕКТА</text>
-<text class="nb" x="109" y="234">РД · ТЗ · ТУ · сметы · акты</text>
-<text class="nb" x="109" y="260">сертификаты · журналы · ПНР</text>
-<rect x="520" y="162" width="363" height="116" rx="14" fill="#FAF0D4" stroke="#D9BC7D" stroke-width="2" filter="url(#shadow)"/>
-<rect x="520" y="177" width="6" height="86" rx="3" fill="#E7C66B"/>
-<text class="nt" x="541" y="200">ИСТОЧНИКИ НПА/НТД</text>
-<text class="nb" x="541" y="234">Официальные публикации</text>
-<text class="nb" x="541" y="260">и разрешённые нормативные базы</text>
-<rect x="1367" y="162" width="367" height="116" rx="14" fill="#E3F5E6" stroke="#AFD4B6" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1367" y="177" width="6" height="86" rx="3" fill="#87E481"/>
-<text class="nt" x="1388" y="200">ИНЖЕНЕР ПТО</text>
-<text class="nb" x="1388" y="234">Вопросы по промежуточной версии</text>
-<text class="nb" x="1388" y="260">Финальное утверждение комплекта</text>
-<rect x="102" y="420" width="327" height="162" rx="14" fill="#EDE7F5" stroke="#C0B2D7" stroke-width="2" filter="url(#shadow)"/>
-<rect x="102" y="435" width="6" height="132" rx="3" fill="#C5B7E7"/>
-<text class="nt" x="123" y="458">ЗАЩИЩЁННЫЙ АППЕНДИКС</text>
-<text class="nb" x="123" y="492">Оригиналы, версии, метаданные</text>
-<text class="nb" x="123" y="518">чувствительные реквизиты</text>
-<rect x="472" y="420" width="335" height="162" rx="14" fill="#FAF0D4" stroke="#D9BC7D" stroke-width="2" filter="url(#shadow)"/>
-<rect x="472" y="435" width="6" height="132" rx="3" fill="#E7C66B"/>
-<text class="nt" x="493" y="458">НОРМАТИВНОЕ ЯДРО</text>
-<text class="nb" x="493" y="492">НПА/НТД · правила · редакции</text>
-<text class="nb" x="493" y="518">дата успешной актуализации</text>
-<rect x="852" y="420" width="340" height="162" rx="14" fill="#E3F5E6" stroke="#AFD4B6" stroke-width="2" filter="url(#shadow)"/>
-<rect x="852" y="435" width="6" height="132" rx="3" fill="#87E481"/>
-<text class="nt" x="873" y="458">ФОРМЫ И ТАБЛИЦЫ</text>
-<text class="nb" x="873" y="492">Типы ИД · поля · шаблоны</text>
-<text class="nb" x="873" y="518">связи · условия заполнения</text>
-<rect x="102" y="680" width="327" height="163" rx="14" fill="#EDE7F5" stroke="#C0B2D7" stroke-width="2" filter="url(#shadow)"/>
-<rect x="102" y="695" width="6" height="133" rx="3" fill="#C5B7E7"/>
-<text class="nt" x="123" y="718">СЛОВАРЬ ШИФРОВОК</text>
-<text class="nb" x="123" y="752">ИП Иванов ⇄ ИП 1849</text>
-<text class="nb" x="123" y="778">подлинные связи только локально</text>
-<rect x="472" y="680" width="335" height="163" rx="14" fill="#E1F3F7" stroke="#9ECEDA" stroke-width="2" filter="url(#shadow)"/>
-<rect x="472" y="695" width="6" height="133" rx="3" fill="#67D6EF"/>
-<text class="nt" x="493" y="718">РАБОЧАЯ ВЕРСИЯ</text>
-<text class="nb" x="493" y="752">Структурированный вывод ИИ</text>
-<text class="nb" x="493" y="778">исправления · версии · вопросы</text>
-<rect x="852" y="680" width="340" height="163" rx="14" fill="#E3F5E6" stroke="#AFD4B6" stroke-width="2" filter="url(#shadow)"/>
-<rect x="852" y="695" width="6" height="133" rx="3" fill="#87E481"/>
-<text class="nt" x="873" y="718">ЛОКАЛЬНАЯ СБОРКА</text>
-<text class="nb" x="873" y="752">Возврат настоящих реквизитов</text>
-<text class="nb" x="873" y="778">DOCX · XLSX · PDF · реестр</text>
-<rect x="1203" y="644" width="180" height="161" rx="14" fill="#FCE9E0" stroke="#E5BAA5" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1203" y="659" width="6" height="131" rx="3" fill="#F0AE99"/>
-<text class="nt" x="1224" y="682">ШЛЮЗ</text>
-<text class="nb" x="1224" y="716">проверка полей</text>
-<text class="nb" x="1224" y="742">псевдонимы</text>
-<text class="nb" x="1224" y="768">валидация</text>
-<rect x="1441" y="430" width="252" height="162" rx="14" fill="#FCE9E0" stroke="#E5BAA5" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1441" y="445" width="6" height="132" rx="3" fill="#F0AE99"/>
-<text class="nt" x="1462" y="468">ИИ-АНАЛИЗ GPUGO</text>
-<text class="nb" x="1462" y="502">Разбор и сверка полного пакета</text>
-<text class="nb" x="1462" y="528">по безопасной структуре</text>
-<rect x="1441" y="636" width="252" height="164" rx="14" fill="#FCE9E0" stroke="#E5BAA5" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1441" y="651" width="6" height="134" rx="3" fill="#F0AE99"/>
-<text class="nt" x="1462" y="674">ИИ-СОСТАВЛЕНИЕ</text>
-<text class="nb" x="1462" y="708">Формы по правилам коробки</text>
-<text class="nb" x="1462" y="734">ответы на вопросы инженера</text>
-<text x="278" y="269" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">внутрь</text>
-<text x="708" y="309" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">актуализация</text>
-<text x="815" y="492" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">правила</text>
-<text x="273" y="573" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">локально</text>
-<text x="451" y="896" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">структура + псевдонимы</text>
-<text x="1418" y="670" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">допуск</text>
-<text x="1576" y="583" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">контекст</text>
-<text x="1449" y="717" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">JSON-ответ</text>
-<text x="1128" y="877" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">рабочая версия</text>
-<text x="815" y="751" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">подстановка</text>
-<text x="1233" y="942" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">готовый комплект</text>
-<text x="97" y="984" font-family="Arial,sans-serif" font-size="15" fill="#6B7478">Оригиналы и закрытый словарь никогда не передаются на GPU-сервер напрямую</text>
-<path d="M65 942 H1735" stroke="#DBDFDE" stroke-width="1.4"/>
-<text x="65" y="977" font-family="Arial,sans-serif" font-size="13" fill="#6B7478">СОГЛАСОВАНО: продуктовая логика 18.11.2026  ·  ИСПОЛНЕНИЕ: архитектура, не готовый SaaS</text>
-<text x="1735" y="977" font-family="Arial,sans-serif" text-anchor="end" font-size="13" fill="#6B7478">GPUGO / CONSTRUCTION DOCS · 18.11.2026</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2160 1340" role="img" aria-label="A0  /  КАК УСТРОЕНА СИСТЕМА">
+<defs><marker id="tip" markerWidth="11" markerHeight="11" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 1 L10 5 L0 9 Z" fill="#718F99"/></marker><marker id="tip-red" markerWidth="11" markerHeight="11" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 1 L10 5 L0 9 Z" fill="#C88B84"/></marker></defs>
+<style><![CDATA[text{font-family:Arial,'Liberation Sans',sans-serif;letter-spacing:.02px;}]]></style>
+<rect width="2160" height="1340" fill="#F7F3EE"/>
+<rect x="82" y="48" width="10" height="86" rx="5" fill="#67D6EF"/>
+<text x="119" y="89" font-weight="700" font-size="35" fill="#1A1C1D">A0  /  КАК УСТРОЕНА СИСТЕМА</text>
+<text x="119" y="129" font-size="19" fill="#69777D">Защищённая «коробка» · контролируемый шлюз · GPUGO · итоговая проверка ПТО</text>
+<path d="M82 156 H2080" stroke="#D9DDDC" stroke-width="2"/>
+<rect x="70" y="350" width="1365" height="760" rx="26" fill="#EDF3F0" stroke="#B7CFC8" stroke-width="2.5"/>
+<text x="95" y="388" font-size="17" letter-spacing="1" font-weight="700" fill="#34444E">01  /  ИЗОЛИРОВАННАЯ «КОРОБКА»  ·  WINDOWS</text>
+<rect x="1740" y="365" width="360" height="695" rx="26" fill="#FBF0E8" stroke="#E4C1A7" stroke-width="2.5"/>
+<text x="1765" y="403" font-size="17" letter-spacing="1" font-weight="700" fill="#34444E">02  /  GPUGO · ИНФЕРЕНС</text>
+<g class="node"><path d="M 126 190 H 429 L 450 211 V 280 Q 450 294 436 294 H 124 Q 110 294 110 280 V 206 Q 110 190 126 190 Z" fill="#E3F4FA" stroke="#AED4E1" stroke-width="2"/><path d="M 429 190 V 211 H 450" fill="none" stroke="#AED4E1" stroke-width="2"/><rect x="112" y="210" width="6" height="64" rx="3" fill="#67D6EF"/><text x="134" y="226" font-size="18" font-weight="700" fill="#1A1C1D">ПАКЕТ ДОКУМЕНТОВ</text><text x="134" y="256" font-size="15" fill="#34444E">РД, ТЗ, ТУ, сметы, акты</text><text x="134" y="281" font-size="15" fill="#34444E">Сертификаты, ПНР, журналы</text></g>
+<g class="node"><path d="M 706 190 H 1029 L 1050 211 V 280 Q 1050 294 1036 294 H 704 Q 690 294 690 280 V 206 Q 690 190 706 190 Z" fill="#FBF2D8" stroke="#DEC58B" stroke-width="2"/><path d="M 1029 190 V 211 H 1050" fill="none" stroke="#DEC58B" stroke-width="2"/><rect x="692" y="210" width="6" height="64" rx="3" fill="#E7C66B"/><text x="714" y="226" font-size="18" font-weight="700" fill="#1A1C1D">ИСТОЧНИКИ НПА/НТД</text><text x="714" y="256" font-size="15" fill="#34444E">Официальные редакции</text><text x="714" y="281" font-size="15" fill="#34444E">Нормативные справочники</text></g>
+<g class="node"><rect x="140" y="485" width="330" height="170" rx="15" fill="#EDE8F5" stroke="#C6B8D9" stroke-width="2"/><path d="M 142 512 Q 305 532 468 512" fill="none" stroke="#C6B8D9" stroke-width="1.8" opacity=".6"/><rect x="142" y="505" width="6" height="130" rx="3" fill="#C5B7E7"/><text x="164" y="528" font-size="18" font-weight="700" fill="#1A1C1D">ЗАЩИЩЁННЫЙ АППЕНДИКС</text><text x="164" y="570" font-size="15" fill="#34444E">Оригиналы, версии, факты</text><text x="164" y="595" font-size="15" fill="#34444E">Чувствительные реквизиты</text></g>
+<g class="node"><rect x="545" y="485" width="330" height="170" rx="15" fill="#FBF2D8" stroke="#DEC58B" stroke-width="2"/><path d="M 547 512 Q 710 532 873 512" fill="none" stroke="#DEC58B" stroke-width="1.8" opacity=".6"/><rect x="547" y="505" width="6" height="130" rx="3" fill="#E7C66B"/><text x="569" y="528" font-size="18" font-weight="700" fill="#1A1C1D">НОРМАТИВНОЕ ЯДРО</text><text x="569" y="570" font-size="15" fill="#34444E">НПА/НТД, редакции, правила</text><text x="569" y="595" font-size="15" fill="#34444E">Дата проверки обновлений</text></g>
+<g class="node"><rect x="950" y="485" width="330" height="170" rx="15" fill="#E4F5E8" stroke="#A8D2B0" stroke-width="2"/><rect x="952" y="505" width="6" height="130" rx="3" fill="#87E481"/><text x="974" y="528" font-size="18" font-weight="700" fill="#1A1C1D">ФОРМЫ И ТАБЛИЦЫ</text><text x="974" y="570" font-size="15" fill="#34444E">Типы ИД, поля, шаблоны</text><text x="974" y="595" font-size="15" fill="#34444E">Связи и правила заполнения</text></g>
+<g class="node"><rect x="140" y="810" width="330" height="170" rx="15" fill="#EDE8F5" stroke="#C6B8D9" stroke-width="2"/><path d="M 142 837 Q 305 857 468 837" fill="none" stroke="#C6B8D9" stroke-width="1.8" opacity=".6"/><rect x="142" y="830" width="6" height="130" rx="3" fill="#C5B7E7"/><text x="164" y="853" font-size="18" font-weight="700" fill="#1A1C1D">СЛОВАРЬ ШИФРОВОК</text><text x="164" y="895" font-size="15" fill="#34444E">ИП Иванов ⇄ ИП 1849</text><text x="164" y="920" font-size="15" fill="#34444E">Ключи остаются локально</text></g>
+<g class="node"><rect x="545" y="810" width="330" height="170" rx="15" fill="#E3F4FA" stroke="#AED4E1" stroke-width="2"/><rect x="547" y="830" width="6" height="130" rx="3" fill="#67D6EF"/><text x="569" y="853" font-size="18" font-weight="700" fill="#1A1C1D">РАБОЧАЯ ВЕРСИЯ</text><text x="569" y="895" font-size="15" fill="#34444E">Черновики и исправления ИИ</text><text x="569" y="920" font-size="15" fill="#34444E">История и вопросы ПТО</text></g>
+<g class="node"><rect x="950" y="810" width="330" height="170" rx="15" fill="#E4F5E8" stroke="#A8D2B0" stroke-width="2"/><rect x="952" y="830" width="6" height="130" rx="3" fill="#87E481"/><text x="974" y="853" font-size="18" font-weight="700" fill="#1A1C1D">ЛОКАЛЬНАЯ СБОРКА</text><text x="974" y="895" font-size="15" fill="#34444E">Подстановка реквизитов</text><text x="974" y="920" font-size="15" fill="#34444E">DOCX, XLSX, PDF, реестр</text></g>
+<g class="node"><rect x="1510" y="485" width="165" height="170" rx="15" fill="#FCE9E3" stroke="#EAB8A8" stroke-width="2"/><rect x="1512" y="505" width="6" height="130" rx="3" fill="#F0AE99"/><text x="1526" y="528" font-size="13" font-weight="700" fill="#1A1C1D">ШЛЮЗ / ВЫХОД</text><text x="1526" y="570" font-size="12" fill="#34444E">Политика передачи</text><text x="1526" y="592" font-size="12" fill="#34444E">Замена реквизитов</text></g>
+<g class="node"><rect x="1510" y="810" width="165" height="170" rx="15" fill="#FCE9E3" stroke="#EAB8A8" stroke-width="2"/><rect x="1512" y="830" width="6" height="130" rx="3" fill="#F0AE99"/><text x="1526" y="853" font-size="13" font-weight="700" fill="#1A1C1D">ШЛЮЗ / ВОЗВРАТ</text><text x="1526" y="895" font-size="12" fill="#34444E">Проверка JSON</text><text x="1526" y="917" font-size="12" fill="#34444E">Контроль правок</text></g>
+<g class="node"><rect x="1770" y="485" width="280" height="170" rx="15" fill="#FCE9E3" stroke="#EAB8A8" stroke-width="2"/><rect x="1772" y="505" width="6" height="130" rx="3" fill="#F0AE99"/><text x="1794" y="528" font-size="18" font-weight="700" fill="#1A1C1D">ИИ · АНАЛИЗ</text><text x="1794" y="570" font-size="15" fill="#34444E">Структура и расхождения</text><text x="1794" y="595" font-size="15" fill="#34444E">Сверка по правилам</text></g>
+<g class="node"><rect x="1770" y="810" width="280" height="170" rx="15" fill="#FCE9E3" stroke="#EAB8A8" stroke-width="2"/><rect x="1772" y="830" width="6" height="130" rx="3" fill="#F0AE99"/><text x="1794" y="853" font-size="18" font-weight="700" fill="#1A1C1D">ИИ · СОСТАВЛЕНИЕ</text><text x="1794" y="895" font-size="15" fill="#34444E">Обезличенный JSON</text><text x="1794" y="920" font-size="15" fill="#34444E">Результат по шаблонам</text></g>
+<g class="node"><rect x="950" y="1160" width="470" height="100" rx="15" fill="#E4F5E8" stroke="#A8D2B0" stroke-width="2"/><rect x="952" y="1180" width="6" height="60" rx="3" fill="#87E481"/><text x="974" y="1196" font-size="18" font-weight="700" fill="#1A1C1D">ПТО · ФИНАЛЬНАЯ ПРОВЕРКА</text><text x="974" y="1226" font-size="15" fill="#34444E">Инженер утверждает готовый комплект</text></g>
+<path d="M280 294 L280 485" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M870 294 L870 325 L710 325 L710 485" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)" stroke-dasharray="9 8"/>
+<path d="M305 655 L305 810" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M875 570 L950 570" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)" stroke-dasharray="9 8"/>
+<path d="M390 810 L390 725 L1490 725 L1490 570 L1510 570" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1675 570 L1770 570" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1910 655 L1910 810" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1770 895 L1675 895" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1510 905 L1455 905 L1455 775 L710 775 L710 810" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M875 895 L950 895" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1115 980 L1115 1160" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)" stroke-dasharray="9 8"/>
+<path d="M1115 485 L1115 445 L1592 445 L1592 485" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)" stroke-dasharray="9 8"/>
+<path d="M82 1295 H2080" stroke="#D9DDDC" stroke-width="2"/>
+<text x="82" y="1321" font-size="15" fill="#69777D">Согласованная архитектура, а не готовый SaaS · 19.11.2026</text>
 </svg>
