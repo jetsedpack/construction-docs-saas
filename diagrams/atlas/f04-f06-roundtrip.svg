@@ -1,81 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1020" role="img" aria-label="F04 → F06 · ПОЛНЫЙ КРУГ ДОКУМЕНТА">
-<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#829B9F"/></marker><filter id="shadow" x="-10%" y="-10%" width="130%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity=".055"/></filter></defs>
-<style><![CDATA[
-.title{font:700 31px Arial,sans-serif;fill:#1A1C1D} .subtitle{font:16px Arial,sans-serif;fill:#6B7478}
-.caps{font:700 14px Arial,sans-serif;letter-spacing:1.1px;fill:#34444E}
-.nt{font:700 18px Arial,sans-serif;fill:#1A1C1D} .nb{font:15px Arial,sans-serif;fill:#34444E} .note{font:14px Arial,sans-serif;fill:#6B7478}
-.edge{fill:none;stroke:#9BA8AA;stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round} .dash{stroke-dasharray:7 7}
-]]></style>
-<rect width="1800" height="1020" fill="#F7F3EE"/>
-<rect x="65" y="49" width="10" height="75" rx="5" fill="#67D6EF"/>
-<text class="title" x="99" y="87">F04 → F06 · ПОЛНЫЙ КРУГ ДОКУМЕНТА</text>
-<text class="subtitle" x="99" y="122">Структура для ИИ → проверяемый результат → локальная подстановка → утверждение инженером</text>
-<path d="M65 150 H1735" stroke="#DBDFDE" stroke-width="1.6"/>
-<rect x="60" y="232" width="1146" height="670" rx="22" fill="#EDF2EF" stroke="#B8CBC6" stroke-width="2.5"/>
-<text class="caps" x="86" y="267">01  /  WINDOWS · ЛОКАЛЬНОЕ ДОВЕРИЕ</text>
-<rect x="1261" y="232" width="477" height="670" rx="22" fill="#FAF0E8" stroke="#E6C4AA" stroke-width="2.5"/>
-<text class="caps" x="1287" y="267">02  /  GPUGO · БЕЗ ОРИГИНАЛОВ</text>
-<path class="edge " d="M421 404 L472 404"  marker-end="url(#arrow)"/>
-<path class="edge " d="M800 404 L851 404"  marker-end="url(#arrow)"/>
-<path class="edge " d="M1173 404 L1297 404"  marker-end="url(#arrow)"/>
-<path class="edge " d="M1495 481 L1495 632"  marker-end="url(#arrow)"/>
-<path class="edge " d="M1297 710 L1173 710"  marker-end="url(#arrow)"/>
-<path class="edge " d="M851 710 L800 710"  marker-end="url(#arrow)"/>
-<path class="edge " d="M472 710 L421 710"  marker-end="url(#arrow)"/>
-<path class="edge " d="M257 788 L257 832"  marker-end="url(#arrow)"/>
-<rect x="93" y="326" width="328" height="155" rx="14" fill="#EDE7F5" stroke="#C0B2D7" stroke-width="2" filter="url(#shadow)"/>
-<rect x="93" y="341" width="6" height="125" rx="3" fill="#C5B7E7"/>
-<text class="nt" x="114" y="364">01 · СЫРЬЁ</text>
-<text class="nb" x="114" y="398">ИП Иванов</text>
-<text class="nb" x="114" y="424">смета · РД · акт · версия</text>
-<rect x="472" y="326" width="328" height="155" rx="14" fill="#E1F3F7" stroke="#9ECEDA" stroke-width="2" filter="url(#shadow)"/>
-<rect x="472" y="341" width="6" height="125" rx="3" fill="#67D6EF"/>
-<text class="nt" x="493" y="364">02 · БЕЗОПАСНЫЙ JSON</text>
-<text class="nb" x="493" y="398">contractor = ИП 1849</text>
-<text class="nb" x="493" y="424">поля · ссылки · layout · metadata</text>
-<rect x="851" y="326" width="322" height="155" rx="14" fill="#FAF0D4" stroke="#D9BC7D" stroke-width="2" filter="url(#shadow)"/>
-<rect x="851" y="341" width="6" height="125" rx="3" fill="#E7C66B"/>
-<text class="nt" x="872" y="364">03 · ШЛЮЗ / POLICY</text>
-<text class="nb" x="872" y="398">строгий whitelist</text>
-<text class="nb" x="872" y="424">косвенные признаки · контроль</text>
-<rect x="1297" y="326" width="399" height="155" rx="14" fill="#FCE9E0" stroke="#E5BAA5" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1297" y="341" width="6" height="125" rx="3" fill="#F0AE99"/>
-<text class="nt" x="1318" y="364">04 · ИИ НА GPU</text>
-<text class="nb" x="1318" y="398">Распознаёт связи / противоречия</text>
-<text class="nb" x="1318" y="424">сверяет по версиям правил</text>
-<rect x="1297" y="632" width="399" height="156" rx="14" fill="#FCE9E0" stroke="#E5BAA5" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1297" y="647" width="6" height="126" rx="3" fill="#F0AE99"/>
-<text class="nt" x="1318" y="670">05 · ОБЕЗЛИЧЕННЫЙ ВЫВОД</text>
-<text class="nb" x="1318" y="704">template_id · field_id · value</text>
-<text class="nb" x="1318" y="730">source_ref · status · rule_id</text>
-<rect x="851" y="632" width="322" height="156" rx="14" fill="#FAF0D4" stroke="#D9BC7D" stroke-width="2" filter="url(#shadow)"/>
-<rect x="851" y="647" width="6" height="126" rx="3" fill="#E7C66B"/>
-<text class="nt" x="872" y="670">06 · ПРОВЕРКА И ВЕРСИЯ</text>
-<text class="nb" x="872" y="704">валидация JSON, связей и правил</text>
-<text class="nb" x="872" y="730">не перезаписывать оригинал</text>
-<rect x="472" y="632" width="328" height="156" rx="14" fill="#EDE7F5" stroke="#C0B2D7" stroke-width="2" filter="url(#shadow)"/>
-<rect x="472" y="647" width="6" height="126" rx="3" fill="#C5B7E7"/>
-<text class="nt" x="493" y="670">07 · ПОДСТАНОВКА</text>
-<text class="nb" x="493" y="704">field_id → локальный alias resolver</text>
-<text class="nb" x="493" y="730">вставить настоящие реквизиты</text>
-<rect x="93" y="632" width="328" height="156" rx="14" fill="#E3F5E6" stroke="#AFD4B6" stroke-width="2" filter="url(#shadow)"/>
-<rect x="93" y="647" width="6" height="126" rx="3" fill="#87E481"/>
-<text class="nt" x="114" y="670">08 · ГОТОВЫЙ ФАЙЛ</text>
-<text class="nb" x="114" y="704">DOCX · XLSX · PDF · реестр</text>
-<text class="nb" x="114" y="730">локальные шаблоны коробки</text>
-<rect x="93" y="832" width="1602" height="110" rx="14" fill="#E3F5E6" stroke="#AFD4B6" stroke-width="2" filter="url(#shadow)"/>
-<rect x="93" y="847" width="6" height="80" rx="3" fill="#87E481"/>
-<text class="nt" x="114" y="870">09 · ИНЖЕНЕР ПТО   /   ЕДИНСТВЕННАЯ ОБЯЗАТЕЛЬНАЯ ПРИЁМКА — ФИНАЛЬНОГО КОМПЛЕКТА</text>
-<text class="nb" x="114" y="904">В процессе может задавать вопросы на естественном языке; отдельного утверждения каждого шага ИИ не требуется</text>
-<text x="429" y="395" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">локальный разбор</text>
-<text x="808" y="395" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">обезличивание</text>
-<text x="1181" y="395" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">разрешённое</text>
-<text x="1503" y="472" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">формирование</text>
-<text x="1305" y="701" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">обратный канал</text>
-<text x="859" y="701" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">проверено</text>
-<text x="480" y="701" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">реальные поля</text>
-<text x="265" y="779" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">на проверку</text>
-<path d="M65 942 H1735" stroke="#DBDFDE" stroke-width="1.4"/>
-<text x="65" y="977" font-family="Arial,sans-serif" font-size="13" fill="#6B7478">СОГЛАСОВАНО: ИИ составляет обезличенный выход, чувствительные реквизиты возвращает локальный шлюз</text>
-<text x="1735" y="977" font-family="Arial,sans-serif" text-anchor="end" font-size="13" fill="#6B7478">GPUGO / CONSTRUCTION DOCS · 18.11.2026</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2160 1340" role="img" aria-label="F04—F06  /  КАК ИИ СОБИРАЕТ ДОКУМЕНТ">
+<defs><marker id="tip" markerWidth="11" markerHeight="11" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 1 L10 5 L0 9 Z" fill="#718F99"/></marker><marker id="tip-red" markerWidth="11" markerHeight="11" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 1 L10 5 L0 9 Z" fill="#C88B84"/></marker></defs>
+<style><![CDATA[text{font-family:Arial,'Liberation Sans',sans-serif;letter-spacing:.02px;}]]></style>
+<rect width="2160" height="1340" fill="#F7F3EE"/>
+<rect x="82" y="48" width="10" height="86" rx="5" fill="#67D6EF"/>
+<text x="119" y="89" font-weight="700" font-size="35" fill="#1A1C1D">F04—F06  /  КАК ИИ СОБИРАЕТ ДОКУМЕНТ</text>
+<text x="119" y="129" font-size="19" fill="#69777D">На GPUGO — только разрешённая структура · реальные реквизиты возвращаются локально</text>
+<path d="M82 156 H2080" stroke="#D9DDDC" stroke-width="2"/>
+<rect x="75" y="215" width="1460" height="300" rx="26" fill="#EDF3F0" stroke="#B7CFC8" stroke-width="2.5"/>
+<text x="100" y="253" font-size="17" letter-spacing="1" font-weight="700" fill="#34444E">01  /  WINDOWS · ПОДГОТОВКА</text>
+<rect x="1550" y="215" width="495" height="690" rx="26" fill="#FBF0E8" stroke="#E4C1A7" stroke-width="2.5"/>
+<text x="1575" y="253" font-size="17" letter-spacing="1" font-weight="700" fill="#34444E">02  /  GPUGO · AI</text>
+<rect x="75" y="575" width="1460" height="350" rx="26" fill="#EDF3F0" stroke="#B7CFC8" stroke-width="2.5"/>
+<text x="100" y="613" font-size="17" letter-spacing="1" font-weight="700" fill="#34444E">03  /  WINDOWS · ВЫПУСК</text>
+<g class="node"><rect x="100" y="290" width="365" height="160" rx="15" fill="#EDE8F5" stroke="#C6B8D9" stroke-width="2"/><path d="M 102 317 Q 282.5 337 463 317" fill="none" stroke="#C6B8D9" stroke-width="1.8" opacity=".6"/><rect x="102" y="310" width="6" height="120" rx="3" fill="#C5B7E7"/><text x="124" y="333" font-size="18" font-weight="700" fill="#1A1C1D">ЗАЩИЩЁННЫЕ ИСХОДНИКИ</text><text x="124" y="375" font-size="15" fill="#34444E">Оригиналы, версии и связи</text><text x="124" y="400" font-size="15" fill="#34444E">Чувствительные значения</text></g>
+<g class="node"><rect x="600" y="290" width="365" height="160" rx="15" fill="#E3F4FA" stroke="#AED4E1" stroke-width="2"/><rect x="602" y="310" width="6" height="120" rx="3" fill="#67D6EF"/><text x="624" y="333" font-size="18" font-weight="700" fill="#1A1C1D">СТРУКТУРНАЯ КОПИЯ</text><text x="624" y="375" font-size="15" fill="#34444E">Поля, расположение, связи</text><text x="624" y="400" font-size="15" fill="#34444E">Разрешённые метаданные</text></g>
+<g class="node"><path d="M 1115 290 H 1450 L 1465 305 V 435 L 1450 450 H 1115 L 1100 435 V 305 Z" fill="#FBF2D8" stroke="#DEC58B" stroke-width="2"/><rect x="1102" y="310" width="6" height="120" rx="3" fill="#E7C66B"/><text x="1124" y="333" font-size="18" font-weight="700" fill="#1A1C1D">ИСХОДЯЩИЙ ШЛЮЗ</text><text x="1124" y="375" font-size="15" fill="#34444E">Псевдонимы и whitelist</text><text x="1124" y="400" font-size="15" fill="#34444E">Проверка безопасных полей</text></g>
+<g class="node"><rect x="1600" y="290" width="365" height="160" rx="15" fill="#FCE9E3" stroke="#EAB8A8" stroke-width="2"/><rect x="1602" y="310" width="6" height="120" rx="3" fill="#F0AE99"/><text x="1624" y="333" font-size="18" font-weight="700" fill="#1A1C1D">ИИ · СВЕРКА И СБОРКА</text><text x="1624" y="375" font-size="15" fill="#34444E">Правила, нормы, шаблоны</text><text x="1624" y="400" font-size="15" fill="#34444E">Обезличенный результат</text></g>
+<g class="node"><rect x="1600" y="680" width="365" height="160" rx="15" fill="#FCE9E3" stroke="#EAB8A8" stroke-width="2"/><rect x="1602" y="700" width="6" height="120" rx="3" fill="#F0AE99"/><text x="1624" y="723" font-size="18" font-weight="700" fill="#1A1C1D">ПОДГОТОВЛЕННЫЙ JSON</text><text x="1624" y="765" font-size="15" fill="#34444E">template_id, field_id, status</text><text x="1624" y="790" font-size="15" fill="#34444E">source_ref, rule_id</text></g>
+<g class="node"><path d="M 1115 680 H 1450 L 1465 695 V 825 L 1450 840 H 1115 L 1100 825 V 695 Z" fill="#FBF2D8" stroke="#DEC58B" stroke-width="2"/><rect x="1102" y="700" width="6" height="120" rx="3" fill="#E7C66B"/><text x="1124" y="723" font-size="18" font-weight="700" fill="#1A1C1D">ВХОДЯЩИЙ ШЛЮЗ</text><text x="1124" y="765" font-size="15" fill="#34444E">Валидация полей и ссылок</text><text x="1124" y="790" font-size="15" fill="#34444E">Сохранение версии</text></g>
+<g class="node"><rect x="600" y="680" width="365" height="160" rx="15" fill="#EDE8F5" stroke="#C6B8D9" stroke-width="2"/><path d="M 602 707 Q 782.5 727 963 707" fill="none" stroke="#C6B8D9" stroke-width="1.8" opacity=".6"/><rect x="602" y="700" width="6" height="120" rx="3" fill="#C5B7E7"/><text x="624" y="723" font-size="18" font-weight="700" fill="#1A1C1D">ЛОКАЛЬНЫЕ РЕКВИЗИТЫ</text><text x="624" y="765" font-size="15" fill="#34444E">Подстановка по ID полей</text><text x="624" y="790" font-size="15" fill="#34444E">Без замены текста целиком</text></g>
+<g class="node"><path d="M 116 680 H 444 L 465 701 V 826 Q 465 840 451 840 H 114 Q 100 840 100 826 V 696 Q 100 680 116 680 Z" fill="#E4F5E8" stroke="#A8D2B0" stroke-width="2"/><path d="M 444 680 V 701 H 465" fill="none" stroke="#A8D2B0" stroke-width="2"/><rect x="102" y="700" width="6" height="120" rx="3" fill="#87E481"/><text x="124" y="723" font-size="18" font-weight="700" fill="#1A1C1D">ГОТОВЫЕ ДОКУМЕНТЫ</text><text x="124" y="765" font-size="15" fill="#34444E">Локальные DOCX, XLSX, PDF</text><text x="124" y="790" font-size="15" fill="#34444E">Реестры и приложения</text></g>
+<g class="node"><rect x="600" y="1065" width="865" height="125" rx="15" fill="#E4F5E8" stroke="#A8D2B0" stroke-width="2"/><rect x="602" y="1085" width="6" height="85" rx="3" fill="#87E481"/><text x="624" y="1108" font-size="18" font-weight="700" fill="#1A1C1D">ИНЖЕНЕР ПТО</text><text x="624" y="1150" font-size="15" fill="#34444E">Проверка и утверждение финального комплекта</text></g>
+<path d="M465 370 L600 370" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M965 370 L1100 370" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1465 370 L1600 370" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1782 450 L1782 680" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1600 760 L1465 760" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1100 760 L965 760" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M600 760 L465 760" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M282 840 L282 1128 L600 1128" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)" stroke-dasharray="9 8"/>
+<path d="M82 1295 H2080" stroke="#D9DDDC" stroke-width="2"/>
+<text x="82" y="1321" font-size="15" fill="#69777D">Подписание/ЭП отдельно · ИИ не удостоверяет реальные работы</text>
 </svg>
