@@ -11,7 +11,7 @@ Windows-приложение с изолированной «коробкой» 
 
 ## Браузерное демо
 
-[Открыть «Помощник ПТО»](https://construction-docs-demo.vkaravaev.chatgpt.site/) · [Инструкция по запуску и работе](demo/README.md)
+[Скачать HTML демо](demo/index.html) через кнопку **Download raw file** и открыть файл в браузере. [Инструкция по работе с демо](demo/README.md).
 
 ## 01 / Архитектура за одну минуту
 
