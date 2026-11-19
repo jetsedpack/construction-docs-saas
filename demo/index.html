@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Контур ИД — рабочее место ПТО</title>
+<style>
+:root{color-scheme:light;--ink:#1b2634;--muted:#536374;--line:#dde4ea;--paper:#fff;--bg:#f1f4f6;--nav:#162434;--accent:#06695d;--mint:#d8f3e9;--amber:#8a4b04;--red:#ae352a;font-family:"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg)}
+*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #22a693;outline-offset:3px}h1,h2,h3,p{margin:0}a{color:var(--accent)}.icon{width:20px;height:20px;vertical-align:middle;flex:none}.shell{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh}.sidebar{background:var(--nav);color:#e6edf2;display:flex;flex-direction:column;padding:27px 16px 19px;position:sticky;top:0;height:100vh}.brand{display:flex;gap:11px;align-items:center;padding:0 8px}.brand-logo{display:grid;place-items:center;width:37px;height:37px;border-radius:10px;background:#a9ebd7;color:#17392f}.brand strong{display:block;font-size:19px;letter-spacing:-.5px}.brand small{color:#bacad6;font-size:12px}.side-label{font-size:12px;color:#adbfcd;margin:33px 9px 10px;letter-spacing:.08em;text-transform:uppercase}.nav{display:grid;gap:5px}.nav button{display:flex;align-items:center;gap:11px;text-align:left;color:#dce6ed;background:none;border:1px solid transparent;border-radius:8px;padding:10px;font-size:14px;font-weight:600;white-space:nowrap}.nav button:hover{background:#23384c}.nav button[aria-current=page]{background:#284254;color:#c2f6e4;border-color:#3a5868}.nav .count{margin-left:auto;font-size:12px}.sidebar-footer{margin-top:auto;border-top:1px solid #3b4959;padding:15px 8px 0;display:flex;gap:10px;align-items:center;font-size:13px}.avatar{background:#31485b;color:#e6f7f4;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;font-weight:700;flex:none}.sidebar-footer small{display:block;color:#bacad6;margin-top:3px}.workspace{min-width:0}.topbar{height:64px;background:var(--paper);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 30px;gap:10px;font-size:14px}.crumb{color:var(--muted)}.crumb b{color:var(--ink);font-weight:650}.stage{max-width:1440px;margin:auto;padding:28px 30px 40px}.headline{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;margin-bottom:20px}.overline{font-size:12px;font-weight:750;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}h1{font-size:clamp(28px,3vw,41px);letter-spacing:-.045em;line-height:1.07}.description{margin-top:9px;color:var(--muted);line-height:1.5;font-size:15px}.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;min-height:40px;padding:8px 13px;border:1px solid #c9d5dc;background:white;color:var(--ink);font-size:14px;font-weight:650;border-radius:7px;white-space:nowrap}.btn:hover:not(:disabled){background:#edf5f3}.btn.primary{background:var(--accent);border-color:var(--accent);color:white}.btn.primary:hover:not(:disabled){background:#05564d}.btn.small{min-height:32px;padding:4px 8px;font-size:13px}.btn .icon{width:17px;height:17px}.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.pill{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:5px;background:#ecf0f4;color:#48586a;font-size:12px;font-weight:700;white-space:nowrap}.pill.good{background:var(--mint);color:#096050}.pill.bad{background:#fde9e6;color:#993429}.pill.warn{background:#fff0d9;color:#794609}.pill .icon{width:14px;height:14px}.demo{background:#e2eeef;color:#27545b}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:18px}.card,.panel{background:var(--paper);border:1px solid var(--line);border-radius:12px}.stat{padding:15px 17px;min-height:102px}.stat-head{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:14px}.stat-head .icon{width:17px;height:17px;color:var(--accent)}.stat-num{font-size:29px;font-weight:750;margin-top:6px;letter-spacing:-.04em}.stat-note{font-size:12px;color:var(--muted);margin-top:3px}.grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(290px,1fr);gap:14px;align-items:start}.stack{display:grid;gap:14px}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 17px;border-bottom:1px solid var(--line)}h2{font-size:17px;letter-spacing:-.015em}h3{font-size:15px;line-height:1.45}.panel-head p{font-size:13px;color:var(--muted);margin-top:4px}.body-pad{padding:17px}.finding{padding:14px 17px;display:flex;gap:11px;align-items:flex-start}.finding+.finding{border-top:1px solid var(--line)}.finding .glyph{display:grid;place-items:center;width:32px;height:32px;border-radius:7px;background:#fff0e4;color:var(--amber);flex:none}.finding .glyph.critical{background:#fde9e6;color:var(--red)}.finding .glyph .icon{width:17px;height:17px}.finding p,.timeline p{color:var(--muted);margin-top:4px;font-size:13px;line-height:1.45}.finding-copy{flex:1;min-width:0}.finding .btn{margin-top:1px}.progress{height:6px;border-radius:20px;background:#e8eef2;overflow:hidden;margin:9px 0 15px}.progress span{display:block;height:100%;background:#0e8a74;border-radius:20px}.completion{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;color:var(--muted)}.completion strong{color:var(--accent);font-size:21px}.checks{list-style:none;padding:0;margin:0}.checks li{display:flex;align-items:center;gap:8px;padding:9px 0;border-top:1px solid #edf1f4;font-size:13px}.checks .icon{width:16px;height:16px;color:var(--accent)}.checks .missing{color:var(--red)}.checks .pill{margin-left:auto}.full{width:100%;margin-top:10px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;text-align:left;font-size:14px}th{color:var(--muted);background:#f7f9fa;font-size:12px;font-weight:700;white-space:nowrap}th,td{padding:11px 14px;border-bottom:1px solid #e8edf0}tbody tr:last-child td{border-bottom:0}.doc-btn{background:none;border:0;color:var(--ink);font-weight:650;padding:0;text-align:left;overflow-wrap:anywhere}.doc-btn:hover{color:var(--accent);text-decoration:underline}.doc-icon{color:#698192;margin-right:6px;vertical-align:middle}.doc-icon .icon{width:16px;height:16px}.note{color:var(--muted);line-height:1.5;font-size:14px}.empty{padding:20px;color:var(--muted);font-size:14px}.timeline{padding-left:11px;border-left:2px solid #c9e3dc}.timeline+.timeline{margin-top:14px}.timeline small{font-size:12px;color:var(--muted)}.notice{margin-bottom:15px;padding:12px 15px;border-radius:8px;border:1px solid #c9e4dc;background:#ebf7f2;color:#215449;font-size:14px;line-height:1.45}.warning{background:#fff5e6;border-color:#f1d7b0;color:#714307}.toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.text-input,select{border:1px solid #c8d3dc;border-radius:6px;background:white;color:var(--ink);padding:8px;font-size:14px;min-width:0}select{appearance:none;padding-right:27px;background:white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%23536374' stroke-width='1.5'/%3E%3C/svg%3E") right 6px center/15px no-repeat}.toolbar .text-input{width:185px}.field{display:grid;gap:6px;font-size:14px;margin-bottom:12px}.field input{width:100%}.demo-info{font-size:12px;color:var(--muted);margin-top:18px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}.demo-info .icon{width:15px;height:15px}.link-btn{background:none;border:0;color:var(--accent);text-decoration:underline;padding:0;font-size:inherit}.demo-info .link-btn{margin-left:auto}dialog{width:min(500px,calc(100% - 28px));border:1px solid var(--line);border-radius:12px;padding:0;color:var(--ink);box-shadow:0 18px 60px #14243440}dialog::backdrop{background:#16243480}.details{margin:10px 0;display:grid;grid-template-columns:minmax(90px,.7fr) 1.3fr;gap:10px;font-size:14px}.details dt{color:var(--muted)}.details dd{margin:0;overflow-wrap:anywhere}.toast{position:fixed;bottom:18px;right:18px;max-width:calc(100vw - 36px);padding:12px 16px;background:var(--nav);color:white;border-radius:8px;z-index:4;font-size:14px}.toast:empty{display:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+@media(max-width:1050px){.shell{grid-template-columns:194px minmax(0,1fr)}.stage,.topbar{padding-left:20px;padding-right:20px}.grid{grid-template-columns:minmax(0,1.45fr) minmax(265px,1fr)}.finding{flex-wrap:wrap}.finding-copy{min-width:140px}}
+@media(max-width:860px){.grid{grid-template-columns:1fr}.headline{align-items:flex-start;flex-direction:column}}
+@media(max-width:650px){.shell{display:block}.sidebar{position:static;height:auto;padding:12px 13px}.side-label,.sidebar-footer{display:none}.brand{padding:0 0 8px}.brand-logo{width:30px;height:30px}.brand strong{font-size:16px}.brand small{display:none}.nav{display:flex;overflow:auto}.nav button{padding:7px;font-size:12px;gap:5px}.nav .icon{width:15px;height:15px}.topbar{height:44px;padding:0 12px;font-size:12px}.stage{padding:17px 12px 25px}.stats{gap:6px}.stat{padding:8px;min-height:87px}.stat-head{font-size:12px;gap:4px}.stat-head .icon{display:none}.stat-num{font-size:23px}.stat-note{font-size:11px}.panel-head{flex-wrap:wrap}.finding{padding:12px}.description{font-size:14px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+  <div class="brand"><div class="brand-logo" data-icon="layers"></div><div><strong>Контур ИД</strong><small>Исполнительная документация</small></div></div>
+  <div class="side-label">Рабочее пространство</div>
+  <nav id="navigation" class="nav" aria-label="Разделы"></nav>
+  <div class="sidebar-footer"><div class="avatar">ПТО</div><div>Инженер ПТО<small>Демонстрационный проект</small></div></div>
+</aside>
+<div class="workspace">
+  <header class="topbar"><div class="crumb" id="crumb"></div><span class="pill demo">Демо · синтетические данные</span></header>
+  <main id="stage" class="stage"></main>
+</div>
+</div>
+<dialog id="dialog" aria-labelledby="dialog-title"></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script>
+"use strict";
+const documentTypes = new Map([["working_drawing","Рабочий чертёж"],["working_documentation","Комплект РД"],["technical_assignment","Техническое задание"],["technical_conditions","Технические условия"],["technical_specification","Спецификация оборудования"],["bill_of_quantities","Ведомость объёмов работ"],["estimate","Смета / ССР"],["change_register","Ведомость изменений/отступлений"],["construction_log","Общий журнал работ"],["special_works_log","Специальный журнал работ"],["input_inspection_log","Журнал входного контроля"],["hidden_works_act","АОСР — скрытые работы"],["executive_survey","Исполнительная схема"],["equipment_passport","Паспорт оборудования"],["quality_certificate","Сертификат/паспорт качества"],["material_batch","Документ партии материала"],["inspection_act","Акт контроля / приёмки"],["electrical_installation_act","Акт электромонтажа"],["p_nr_protocol","Протокол ПНР"],["equipment_config_archive","Архив конфигурации оборудования"],["id_register","Реестр исполнительной документации"],["contract","Договор / приложение"],["order","Приказ / распоряжение"],["other","Иное / требуется уточнение"]]);
+const paths = {
+  layers:'<path d="m12 3 9 5-9 5-9-5 9-5Zm9 9-9 5-9-5m18 4-9 5-9-5"/>',
+  grid:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+  file:'<path d="M13 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10Zm0 0v7h7M8 14h8m-8 3h8"/>',
+  shield:'<path d="M12 22c5-2 8-5 8-10V5l-8-3-8 3v7c0 5 3 8 8 10Z"/><path d="m9 12 2 2 4-4"/>',
+  folder:'<path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>',
+  check:'<path d="m5 12 5 5L20 7"/>',
+  alert:'<path d="M10.3 4.9 2.6 18a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 4.9a2 2 0 0 0-3.4 0ZM12 9v4m0 4h.01"/>',
+  upload:'<path d="M12 16V4m-5 5 5-5 5 5M4 16v4h16v-4"/>',
+  download:'<path d="M12 4v12m-5-5 5 5 5-5M4 17v3h16v-3"/>',
+  refresh:'<path d="M20 7a9 9 0 1 0 1 8m-1-12v5h-5"/>',
+  lock:'<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/>',
+  close:'<path d="m6 6 12 12M18 6 6 18"/>'
+};
+const icon = name => '<svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+paths[name]+'</svg>';
+const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[char]);
+const STORAGE = "construction-docs-demo-v1";
+const seed = {
+  project:"Демо-подстанция «Северная»", area:"Кабельная трасса КЛ-04 · участок А–Б",
+  docs:[
+    {id:"drawing",name:"РД_КЛ-04_лист-07.pdf",type:"working_drawing",ref:"ЭМ-04, лист 7",rev:"03",fact:"Трасса КЛ-04, участок А–Б. Длина по РД — 84 м."},
+    {id:"act",name:"АОСР_КЛ-04_черновик.docx",type:"hidden_works_act",ref:"АОСР-014, раздел 2",rev:"02",fact:"Прокладка кабеля в защитной трубе до обратной засыпки."},
+    {id:"log",name:"Журнал_монтаж_19-11.xlsx",type:"special_works_log",ref:"Лист «Монтаж», строка 12",rev:"01",fact:"Смонтировано 84 м кабеля КЛ-04. Партия К-214."},
+    {id:"survey",name:"Исполнительная_схема_КЛ-04.pdf",type:"executive_survey",ref:"ИС-04, лист 1",rev:"01",fact:"Трасса КЛ-04, участок А–Б, 84 м."},
+    {id:"spec",name:"Спецификация_кабель_КЛ-04.xlsx",type:"technical_specification",ref:"Лист «Кабель», строка 8",rev:"03",fact:"Кабель для КЛ-04, партия К-214 по журналу монтажа."},
+    {id:"intake",name:"Входной_контроль_К-214.xlsx",type:"input_inspection_log",ref:"Строка 16",rev:"01",fact:"Партия К-214 принята на входном контроле."}
+  ]
+};
+const certificate = {id:"cert",name:"Паспорт_качества_К-214.pdf",type:"quality_certificate",ref:"ПК-214, раздел 1",rev:"01",fact:"Паспорт качества на кабель партии К-214."};
+const requirements = new Map([
+  ["working_drawing","Рабочий чертёж"],["hidden_works_act","Черновик АОСР"],
+  ["special_works_log","Журнал монтажа"],["executive_survey","Исполнительная схема"],
+  ["quality_certificate","Паспорт качества"],["input_inspection_log","Входной контроль"]
+]);
+const pages = new Map([["overview",["Обзор","grid"]],["documents",["Исходные файлы","file"]],["checks",["Проверки","shield"]],["package",["Комплект ИД","folder"]]]);
+const stage = document.querySelector("#stage");
+const dialog = document.querySelector("#dialog");
+let state;
+try { state = JSON.parse(localStorage.getItem(STORAGE)); } catch {}
+if (!state || state.docs?.length === undefined || !Array.isArray(state.audit)) resetState();
+let page = pages.has(location.hash.slice(1)) ? location.hash.slice(1) : "overview";
+let query = "";
+let toastTimer;
+
+function resetState() {
+  state = {...structuredClone(seed),isDemo:true,checked:true,approved:false,audit:[{at:null,text:"Демо-комплект проверен. Обнаружено два замечания."}]};
+}
+function save() {
+  try { localStorage.setItem(STORAGE,JSON.stringify(state)); return true; }
+  catch { return false; }
+}
+function notify(message) {
+  const toast = document.querySelector("#toast");
+  toast.textContent = message;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { toast.textContent = ""; },4500);
+}
+function record(message, invalidate = true) {
+  state.audit.unshift({at:new Date().toISOString(),text:message});
+  state.audit = state.audit.slice(0,50);
+  if (invalidate) { state.checked = false; state.approved = false; }
+  const saved = save();
+  render();
+  notify(saved ? message : message+" Сохранение в браузере недоступно.");
+}
+function documentsOf(type) { return state.docs.filter(doc => doc.type === type); }
+function draftRevision(act) {
+  return state.revisionOverride?.actId === act.id ? state.revisionOverride.rev : act.rev;
+}
+function getFindings() {
+  const findings = [];
+  const unknown = state.docs.filter(doc => !doc.type || doc.type === "other");
+  if (unknown.length) findings.push({id:"classify",severity:"critical",title:"Уточните типы исходных файлов",detail:unknown.length+" в очереди классификации",hint:"Назначьте каждому файлу тип из каталога, затем повторите проверку."});
+  for (const [type,label] of requirements) {
+    if (documentsOf(type).length) continue;
+    findings.push({id:type,severity:"critical",title:type === "quality_certificate" ? "Не хватает паспорта качества" : "Не хватает документа «"+label+"»",
+      detail:type === "quality_certificate" && state.isDemo ? "Партия кабеля К-214 · основание для АОСР-014" : "Обязательный документ по чек-листу демо",
+      hint:type === "quality_certificate" && state.isDemo ? "Партия К-214 указана в журнале монтажа, строка 12, и во входном контроле, строка 16. Добавьте синтетический паспорт партии." : "Добавьте документ этого типа в структурированный пакет и повторите проверку."});
+  }
+  const drawings = documentsOf("working_drawing");
+  const acts = documentsOf("hidden_works_act");
+  if (drawings.length && acts.length && (drawings.length !== 1 || acts.length !== 1)) {
+    findings.push({id:"mapping",severity:"critical",title:"Неоднозначная связь между РД и АОСР",detail:"Для проверки нужен один чертёж и один акт",hint:"Импортируйте комплект на один участок с одним чертежом и одним актом."});
+  } else if (drawings.length && acts.length && drawings[0].rev !== draftRevision(acts[0])) {
+    findings.push({id:"revision",severity:"critical",title:"Редакция РД в акте устарела",detail:acts[0].ref+" · в акте "+draftRevision(acts[0])+", в РД "+drawings[0].rev,
+      hint:"Сверьте чертёж с актом. Подтверждение изменит ссылку на редакцию РД в рабочем черновике.",
+      inputs:[drawings[0],acts[0]]});
+  }
+  return findings;
+}
+function pill(label, style = "") { return '<span class="pill '+style+'">'+escapeHtml(label)+'</span>'; }
+function button(label, action, symbol = "", style = "", disabled = false) {
+  return '<button type="button" class="btn '+style+'" data-action="'+escapeHtml(action)+'"'+(disabled?' disabled':'')+'>'+(symbol?icon(symbol):"")+escapeHtml(label)+'</button>';
+}
+function statusMarkup(findings) {
+  if (state.approved) return pill("Проверено ПТО","good");
+  if (!state.checked) return pill("Нужна проверка","warn");
+  return findings.length ? pill("Есть замечания","warn") : pill("Готов к просмотру","good");
+}
+function panel(title, content, action = "", subtitle = "") {
+  return '<section class="panel"><div class="panel-head"><div><h2>'+title+'</h2>'+(subtitle?'<p>'+subtitle+'</p>':"")+'</div>'+action+'</div>'+content+'</section>';
+}
+function pageHeader(title,description,action = "",overline = "") {
+  return '<div class="headline"><div>'+(overline?'<div class="overline">'+escapeHtml(overline)+'</div>':"")+'<h1>'+escapeHtml(title)+'</h1><p class="description">'+escapeHtml(description)+'</p></div><div class="actions">'+action+'</div></div>';
+}
+function findingRows(findings) {
+  if (!state.checked) return '<p class="empty">Данные изменились. Запустите проверку актуального комплекта.</p>';
+  if (!findings.length) return '<p class="empty">'+icon("check")+' По чек-листу демо замечаний нет.</p>';
+  return findings.map(item => '<div class="finding"><div class="glyph critical">'+icon("alert")+'</div><div class="finding-copy"><h3>'+escapeHtml(item.title)+'</h3><p>'+escapeHtml(item.detail)+'</p></div>'+button("Открыть","finding:"+item.id,"","small")+'</div>').join("");
+}
+function documentsTable(docs, editable = false) {
+  if (!docs.length) return '<p class="empty">Файлы по этому запросу не найдены.</p>';
+  const rows = docs.map(doc => {
+    const type = editable ? '<select aria-label="Тип файла '+escapeHtml(doc.name)+'" data-doc="'+escapeHtml(doc.id)+'"><option value="">Выберите тип</option>'+[...documentTypes].map(([id,label])=>'<option value="'+id+'"'+(doc.type===id?' selected':'')+'>'+escapeHtml(label)+'</option>').join("")+'</select>' : escapeHtml(documentTypes.get(doc.type) ?? "Требуется тип");
+    return '<tr><td><span class="doc-icon">'+icon("file")+'</span><button type="button" data-action="doc:'+escapeHtml(doc.id)+'" class="doc-btn">'+escapeHtml(doc.name)+'</button></td><td>'+type+'</td><td>'+escapeHtml(doc.rev)+'</td></tr>';
+  }).join("");
+  return '<div class="table-wrap"><table><thead><tr><th scope="col">Файл</th><th scope="col">Тип документа</th><th scope="col">Редакция РД / файла</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+}
+function activity() {
+  return '<div class="body-pad">'+state.audit.slice(0,4).map(event=>'<div class="timeline"><small>'+escapeHtml(event.at ? new Intl.DateTimeFormat("ru",{dateStyle:"short",timeStyle:"short"}).format(new Date(event.at)) : "Старт демо")+'</small><p>'+escapeHtml(event.text)+'</p></div>').join("")+'</div>';
+}
+function completeness() {
+  const valid = [...requirements].filter(([type]) => documentsOf(type).length).length;
+  const percent = Math.round(100*valid/requirements.size);
+  return '<div class="body-pad"><div class="completion"><span>'+valid+' из '+requirements.size+' позиций в комплекте</span><strong>'+percent+'%</strong></div><div class="progress" role="progressbar" aria-label="Комплектность" aria-valuenow="'+percent+'"><span style="width:'+percent+'%"></span></div><ul class="checks">'+[...requirements].map(([type,label]) => {
+    const has = documentsOf(type).length;
+    return '<li>'+(!has?'<span class="missing">':"<span>")+icon(has?"check":"alert")+'</span>'+escapeHtml(label)+(has?"":pill("Нет файла","bad"))+'</li>';
+  }).join("")+'</ul>'+button("Открыть комплект","go:package","folder","full")+'</div>';
+}
+function overview(findings) {
+  const classified = state.docs.filter(doc => doc.type && doc.type !== "other").length;
+  const stats = [
+    ["file","Исходные файлы",state.docs.length,classified+" классифицировано"],
+    ["alert","Замечания",state.checked?findings.length:"—",state.checked?(findings.length?"Блокируют готовность комплекта":"По чек-листу демо"):"Запустите проверку"],
+    ["folder","Документы комплекта",state.docs.filter(doc => requirements.has(doc.type)).length,"Позиции из чек-листа"]
+  ].map(([symbol,label,num,note])=>'<div class="card stat"><div class="stat-head">'+icon(symbol)+label+'</div><div class="stat-num">'+num+'</div><div class="stat-note">'+note+'</div></div>').join("");
+  return pageHeader(state.project,state.area,button("Запустить проверку","check","refresh","primary"),"Комплект исполнительной документации")
+    +'<div class="stats">'+stats+'</div><div class="grid"><div class="stack">'
+    +panel("Замечания к комплекту",findingRows(findings),statusMarkup(findings))
+    +panel("Исходные файлы",documentsTable(state.docs.slice(0,4)),button("Весь реестр","go:documents","","small"))
+    +'</div><div class="stack">'+panel("Комплектность",completeness())+panel("История действий",activity())+'</div></div>';
+}
+function documents() {
+  const search = '<label class="sr-only" for="search">Поиск по имени и типу</label><input class="text-input" id="search" placeholder="Найти файл" value="'+escapeHtml(query)+'">';
+  return pageHeader("Исходные файлы","Назначьте тип каждому файлу. Нажмите на имя, чтобы увидеть реквизиты и источник.",button("Импорт JSON","import","upload","primary"))
+    +panel("Реестр документов",'<div id="document-results">'+filteredTable()+'</div>','<div class="toolbar">'+search+button("Скачать пример","example","download","small")+'</div>',state.docs.length+" файлов в комплекте");
+}
+function filteredTable() {
+  const s = query.trim().toLocaleLowerCase("ru");
+  return documentsTable(state.docs.filter(doc => (doc.name+" "+(documentTypes.get(doc.type) ?? "")).toLocaleLowerCase("ru").includes(s)),true);
+}
+function checks(findings) {
+  return pageHeader("Проверки","Типы файлов, комплектность и редакция рабочего чертежа в АОСР.",button("Запустить проверку","check","refresh","primary"))
+    +'<div class="grid"><div class="stack">'+panel("Результаты",findingRows(findings),statusMarkup(findings))
+    +panel("История действий",activity())+'</div>'+panel("Чек-лист документов",completeness())+'</div>';
+}
+function packageView(findings) {
+  const ready = state.checked && !findings.length;
+  const act = documentsOf("hidden_works_act")[0];
+  const instructions = ready ? (state.approved?"ПТО подтвердил просмотр комплекта. Реестр CSV доступен для скачивания.":"Просмотрите черновик и подтвердите комплект.") : "Снимите замечания и запустите проверку, чтобы подтвердить комплект.";
+  const actPreview = act ? '<div class="body-pad"><dl class="details"><dt>Объект</dt><dd>'+escapeHtml(state.project)+'</dd><dt>Участок</dt><dd>'+escapeHtml(state.area)+'</dd><dt>Работы</dt><dd>'+escapeHtml(act.fact)+'</dd><dt>Редакция РД</dt><dd>'+escapeHtml(draftRevision(act))+'</dd><dt>Источник работ</dt><dd>'+escapeHtml(act.ref)+'</dd><dt>Основания</dt><dd>'+[...requirements.keys()].filter(type => type !== "hidden_works_act").flatMap(documentsOf).map(doc => escapeHtml(doc.ref)).join(" · ")+'</dd></dl></div>' : '<p class="empty">В комплекте пока нет черновика акта.</p>';
+  return pageHeader("Комплект ИД",state.area,statusMarkup(findings))
+    +'<div class="notice '+(ready?"":"warning")+'">'+instructions+'</div>'
+    +'<div class="grid"><div class="stack">'+panel("Черновик АОСР",actPreview,pill("Форма демо"),"Акт освидетельствования скрытых работ")+panel("Реестр комплекта",documentsTable(state.docs.filter(doc => requirements.has(doc.type))))+'</div>'
+    +panel("Выпуск комплекта",'<div class="body-pad"><p class="note">Подтверждение фиксируется в журнале демо. CSV содержит файлы, источники и редакции.</p>'+button("Подтвердить просмотр","approve","check","primary full",!ready||state.approved)+button("Скачать реестр CSV","download","download","full",!state.approved)+'</div>')+'</div>';
+}
+function render() {
+  const findings = getFindings();
+  document.querySelector("#navigation").innerHTML = [...pages].map(([id,[label,symbol]])=>'<button type="button" data-action="go:'+id+'"'+(page===id?' aria-current="page"':"")+'>'+icon(symbol)+label+(id==="checks"&&state.checked&&findings.length?'<span class="count">'+findings.length+'</span>':"")+'</button>').join("");
+  document.querySelector("#crumb").innerHTML = "Объект / <b>"+pages.get(page)[0]+"</b>";
+  const body = {overview,documents,checks,package:packageView}[page](findings);
+  stage.innerHTML = body+'<footer class="demo-info">'+icon("lock")+'Рабочие данные хранятся в этом браузере.'+button("Сбросить демо","reset","","small")+'</footer>';
+}
+function go(target) {
+  if (target === page) return;
+  location.hash = target;
+}
+window.addEventListener("hashchange", () => {
+  page = pages.has(location.hash.slice(1)) ? location.hash.slice(1) : "overview";
+  query = "";
+  render();
+  window.scrollTo(0,0);
+});
+function openDialog(title, body) {
+  dialog.innerHTML = '<div class="panel-head"><h2 id="dialog-title">'+escapeHtml(title)+'</h2><button class="btn small" data-action="close" type="button" aria-label="Закрыть">'+icon("close")+'</button></div><div class="body-pad">'+body+'</div>';
+  dialog.showModal();
+}
+function showFinding(item) {
+  if (!item) return;
+  let content = '<p class="note">'+escapeHtml(item.hint)+'</p>';
+  if (item.inputs) content += '<dl class="details">'+item.inputs.map(doc=>'<dt>'+escapeHtml(doc.ref)+'</dt><dd>'+escapeHtml(doc.fact)+' <strong>Ред. '+escapeHtml(doc.rev)+'</strong></dd>').join("")+'</dl>';
+  if (item.id === "quality_certificate" && state.isDemo && !state.docs.some(doc => doc.id === certificate.id)) content += button("Добавить паспорт К-214","attach","file","primary full");
+  else if (item.id === "revision") content += button("Подтвердить редакцию РД "+item.inputs[0].rev,"fix-revision","check","primary full");
+  else content += button("К исходным файлам","go:documents","file","full");
+  openDialog(item.title,content);
+}
+function downloadFile(name,data,mime) {
+  const url = URL.createObjectURL(new Blob([data],{type:mime}));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = name;
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url),1500);
+}
+function downloadRegister() {
+  const csv = value => {
+    const text = String(value);
+    const safe = /^[\p{White_Space}\uFEFF]*[=+@-]|^[\t\r\n]/u.test(text) ? "'"+text : text;
+    return '"'+safe.replaceAll('"','""')+'"';
+  };
+  const rows = [["Объект","Участок","Файл","Тип документа","Источник","Редакция исходника","Редакция в черновике"],
+    ...state.docs.filter(doc => requirements.has(doc.type)).map(doc=>[state.project,state.area,doc.name,documentTypes.get(doc.type),doc.ref,doc.rev,doc.type === "hidden_works_act" ? draftRevision(doc) : ""])];
+  downloadFile("reestr-id.csv","\uFEFF"+rows.map(row=>row.map(csv).join(";")).join("\r\n"),"text/csv;charset=utf-8");
+}
+function parsePackage(raw) {
+  if (!raw || !Array.isArray(raw.docs) || raw.docs.length < 1 || raw.docs.length > 100) throw new Error("Нужен массив docs из 1–100 документов.");
+  const requiredText = (value,label,limit) => {
+    if (typeof value !== "string" || !value.trim() || value.trim().length > limit) throw new Error("Проверьте поле "+label+" (до "+limit+" символов).");
+    return value.trim();
+  };
+  const docs = raw.docs.map((doc,index) => {
+    if (!doc || typeof doc !== "object" || Array.isArray(doc)) throw new Error("Проверьте строку "+(index+1)+" массива docs.");
+    if (doc.type && !documentTypes.has(doc.type)) throw new Error("Неизвестный тип у файла № "+(index+1)+".");
+    return {id:"import-"+index,name:requiredText(doc.name,"name",180),type:doc.type||"",ref:requiredText(doc.ref,"ref",180),rev:requiredText(doc.rev,"rev",32),fact:requiredText(doc.fact,"fact",600)};
+  });
+  return {project:requiredText(raw.project,"project",100),area:requiredText(raw.area,"area",140),docs};
+}
+document.addEventListener("input", event => {
+  if (event.target.id !== "search") return;
+  query = event.target.value;
+  document.querySelector("#document-results").innerHTML = filteredTable();
+});
+document.addEventListener("change", event => {
+  if (!event.target.matches("select[data-doc]")) return;
+  const doc = state.docs.find(item=>item.id===event.target.dataset.doc);
+  const type = event.target.value;
+  if (!doc || (type && !documentTypes.has(type))) return;
+  if (doc.type === type) return;
+  if (["working_drawing","hidden_works_act"].some(relevant => relevant === type || relevant === doc.type)) delete state.revisionOverride;
+  doc.type = type;
+  record("Тип обновлён для файла «"+doc.name+"».");
+  [...stage.querySelectorAll("select[data-doc]")].find(select => select.dataset.doc === doc.id)?.focus();
+});
+document.addEventListener("submit", async event => {
+  if (event.target.id !== "import-form") return;
+  event.preventDefault();
+  const input = document.querySelector("#package-file");
+  const error = document.querySelector("#import-error");
+  const submit = event.submitter;
+  if (submit) submit.disabled = true;
+  try {
+    const file = input.files[0];
+    if (!file || file.size > 512 * 1024) throw new Error("Выберите JSON-файл размером до 512 КБ.");
+    const imported = parsePackage(JSON.parse(await file.text()));
+    if (!dialog.open || !input.isConnected) return;
+    state = {...imported,isDemo:false,audit:[],checked:false,approved:false};
+    query = "";
+    dialog.close();
+    record("Импортировано файлов: "+state.docs.length+".");
+  } catch (err) {
+    error.textContent = err instanceof SyntaxError ? "Файл не удалось прочитать как JSON." : err.message;
+    error.hidden = false;
+  } finally { if (submit) submit.disabled = false; }
+});
+document.addEventListener("click", event => {
+  const action = event.target.closest("[data-action]")?.dataset.action;
+  if (!action) return;
+  const [key,id] = action.split(":");
+  if (key === "go") { if (dialog.open) dialog.close(); go(id); return; }
+  if (key === "close") { dialog.close(); return; }
+  if (key === "doc") {
+    const doc = state.docs.find(item=>item.id===id);
+    if (!doc) return;
+    openDialog(doc.name,'<dl class="details"><dt>Тип</dt><dd>'+escapeHtml(documentTypes.get(doc.type) ?? "Ожидает классификации")+'</dd><dt>Источник</dt><dd>'+escapeHtml(doc.ref)+'</dd><dt>Редакция</dt><dd>'+escapeHtml(doc.rev)+'</dd><dt>Сведения</dt><dd>'+escapeHtml(doc.fact)+'</dd></dl>');
+  }
+  if (key === "finding" && state.checked) showFinding(getFindings().find(item=>item.id===id));
+  if (key === "check") {
+    state.checked = true;
+    const total = getFindings().length;
+    record(total ? "Проверка завершена. Замечаний: "+total+"." : "Проверка завершена. Замечаний нет.",false);
+  }
+  if (key === "attach" && state.isDemo && !state.docs.some(doc=>doc.id===certificate.id)) {
+    state.docs.push(structuredClone(certificate));
+    dialog.close();
+    record("Добавлен паспорт качества партии К-214.");
+  }
+  if (key === "fix-revision") {
+    const finding = getFindings().find(item=>item.id==="revision");
+    if (!finding) return;
+    const [drawing,act] = finding.inputs;
+    const previous = draftRevision(act);
+    state.revisionOverride = {actId:act.id,rev:drawing.rev};
+    dialog.close();
+    record("Ссылка на РД в черновике "+act.ref+" обновлена с "+previous+" на "+draftRevision(act)+".");
+  }
+  if (key === "approve" && state.checked && !state.approved && !getFindings().length) {
+    state.approved = true;
+    record("Инженер ПТО подтвердил просмотр демо-комплекта.",false);
+  }
+  if (key === "download" && state.approved) downloadRegister();
+  if (key === "example") downloadFile("primer-komplekta.json",JSON.stringify(seed,null,2),"application/json");
+  if (key === "import") openDialog("Импорт структурированного пакета",'<p class="note">JSON заменит текущий комплект. Используйте пример из реестра и добавьте свои синтетические строки. Исходные PDF, DOCX и XLSX здесь представлены их реквизитами.</p><form id="import-form" class="full"><label class="field">Файл JSON<input id="package-file" class="text-input" type="file" accept=".json,application/json" required></label><p class="notice warning" id="import-error" role="alert" hidden></p><button type="submit" class="btn primary">Импортировать</button></form>');
+  if (key === "reset") openDialog("Сбросить демо?",'<p class="note">Текущий комплект и его журнал будут заменены стартовым примером.</p>'+button("Сбросить комплект","confirm-reset","","primary full"));
+  if (key === "confirm-reset") {
+    dialog.close();
+    resetState();
+    query = "";
+    const saved = save();
+    render();
+    go("overview");
+    notify(saved ? "Стартовый комплект восстановлен." : "Комплект восстановлен на время сеанса.");
+  }
+});
+for (const element of document.querySelectorAll("[data-icon]")) element.innerHTML=icon(element.dataset.icon);
+render();
+</script>
+</body>
+</html>
