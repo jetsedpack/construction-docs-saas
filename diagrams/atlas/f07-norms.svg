@@ -1,74 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1020" role="img" aria-label="F07 · АКТУАЛИЗАЦИЯ НПА / НТД">
-<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#829B9F"/></marker><filter id="shadow" x="-10%" y="-10%" width="130%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity=".055"/></filter></defs>
-<style><![CDATA[
-.title{font:700 31px Arial,sans-serif;fill:#1A1C1D} .subtitle{font:16px Arial,sans-serif;fill:#6B7478}
-.caps{font:700 14px Arial,sans-serif;letter-spacing:1.1px;fill:#34444E}
-.nt{font:700 18px Arial,sans-serif;fill:#1A1C1D} .nb{font:15px Arial,sans-serif;fill:#34444E} .note{font:14px Arial,sans-serif;fill:#6B7478}
-.edge{fill:none;stroke:#9BA8AA;stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round} .dash{stroke-dasharray:7 7}
-]]></style>
-<rect width="1800" height="1020" fill="#F7F3EE"/>
-<rect x="65" y="49" width="10" height="75" rx="5" fill="#67D6EF"/>
-<text class="title" x="99" y="87">F07 · АКТУАЛИЗАЦИЯ НПА / НТД</text>
-<text class="subtitle" x="99" y="122">ИИ следит за источниками, но не вправе незаметно заменить действовавшие редакции</text>
-<path d="M65 150 H1735" stroke="#DBDFDE" stroke-width="1.6"/>
-<rect x="65" y="285" width="1663" height="633" rx="22" fill="#EDF2EF" stroke="#B8CBC6" stroke-width="2.5"/>
-<text class="caps" x="91" y="320">01  /  РЕГЛАМЕНТИРОВАННОЕ ОБНОВЛЕНИЕ</text>
-<path class="edge " d="M425 464 L471 464"  marker-end="url(#arrow)"/>
-<path class="edge " d="M800 464 L846 464"  marker-end="url(#arrow)"/>
-<path class="edge " d="M1175 464 L1222 464"  marker-end="url(#arrow)"/>
-<path class="edge " d="M1450 548 L1450 650" stroke="#D18C85" marker-end="url(#arrow)"/>
-<path class="edge " d="M1222 507 L1192 507 L1192 590 L1010 590 L1010 650"  marker-end="url(#arrow)"/>
-<path class="edge " d="M846 726 L800 726"  marker-end="url(#arrow)"/>
-<path class="edge " d="M471 726 L425 726"  marker-end="url(#arrow)"/>
-<rect x="96" y="381" width="329" height="167" rx="14" fill="#FAF0D4" stroke="#D9BC7D" stroke-width="2" filter="url(#shadow)"/>
-<rect x="96" y="396" width="6" height="137" rx="3" fill="#E7C66B"/>
-<text class="nt" x="117" y="419">01 · ИСТОЧНИКИ</text>
-<text class="nb" x="117" y="453">Официальные публикации</text>
-<text class="nb" x="117" y="479">лицензированные справочники</text>
-<rect x="471" y="381" width="329" height="167" rx="14" fill="#FCE9E0" stroke="#E5BAA5" stroke-width="2" filter="url(#shadow)"/>
-<rect x="471" y="396" width="6" height="137" rx="3" fill="#F0AE99"/>
-<text class="nt" x="492" y="419">02 · ИИ-МОНИТОР</text>
-<text class="nb" x="492" y="453">Находит новую редакцию</text>
-<text class="nb" x="492" y="479">извлекает различия и ссылки</text>
-<rect x="846" y="381" width="329" height="167" rx="14" fill="#E1F3F7" stroke="#9ECEDA" stroke-width="2" filter="url(#shadow)"/>
-<rect x="846" y="396" width="6" height="137" rx="3" fill="#67D6EF"/>
-<text class="nt" x="867" y="419">03 · КАНДИДАТ</text>
-<text class="nb" x="867" y="453">Новая норма / область / дата</text>
-<text class="nb" x="867" y="479">источник · hash · версия</text>
-<rect x="1222" y="381" width="427" height="167" rx="14" fill="#FAF0D4" stroke="#D9BC7D" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1222" y="396" width="6" height="137" rx="3" fill="#E7C66B"/>
-<text class="nt" x="1243" y="419">04 · КОНТРОЛЬ</text>
-<text class="nb" x="1243" y="453">Проверить редакцию и действие</text>
-<text class="nb" x="1243" y="479">правовой статус · права · применимость</text>
-<rect x="1222" y="650" width="427" height="152" rx="14" fill="#FCE9E0" stroke="#E5BAA5" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1222" y="665" width="6" height="122" rx="3" fill="#F0AE99"/>
-<text class="nt" x="1243" y="688">БЛОК / НЕПОЛНО</text>
-<text class="nb" x="1243" y="722">Не обновлять правило молча</text>
-<text class="nb" x="1243" y="748">ошибка → журнал и отдельный статус</text>
-<rect x="846" y="650" width="329" height="152" rx="14" fill="#E3F5E6" stroke="#AFD4B6" stroke-width="2" filter="url(#shadow)"/>
-<rect x="846" y="665" width="6" height="122" rx="3" fill="#87E481"/>
-<text class="nt" x="867" y="688">05 · КАТАЛОГ ВЕРСИЙ</text>
-<text class="nb" x="867" y="722">Immutable NormEdition</text>
-<text class="nb" x="867" y="748">предыдущие редакции доступны</text>
-<rect x="471" y="650" width="329" height="152" rx="14" fill="#E1F3F7" stroke="#9ECEDA" stroke-width="2" filter="url(#shadow)"/>
-<rect x="471" y="665" width="6" height="122" rx="3" fill="#67D6EF"/>
-<text class="nt" x="492" y="688">06 · ПЕРЕПРОВЕРКА</text>
-<text class="nb" x="492" y="722">Найти затронутые документы</text>
-<text class="nb" x="492" y="748">запустить правила по версии</text>
-<rect x="96" y="650" width="329" height="152" rx="14" fill="#E3F5E6" stroke="#AFD4B6" stroke-width="2" filter="url(#shadow)"/>
-<rect x="96" y="665" width="6" height="122" rx="3" fill="#87E481"/>
-<text class="nt" x="117" y="688">07 · WINDOWS / СТАТУС</text>
-<text class="nb" x="117" y="722">Последнее успешное обновление</text>
-<text class="nb" x="117" y="748">не путать с последней попыткой</text>
-<text x="433" y="455" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">изменения</text>
-<text x="808" y="455" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">извлечено</text>
-<text x="1183" y="455" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">проверить</text>
-<text x="1458" y="539" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">отказ</text>
-<text x="1200" y="581" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">валидно</text>
-<text x="854" y="717" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">новая редакция</text>
-<text x="479" y="717" font-size="13" font-family="Arial,sans-serif" fill="#6B7478">статус</text>
-<text x="96" y="960" font-family="Arial,sans-serif" font-size="16" fill="#6B7478">Устаревший источник или сбой проверки не должны отображаться как «нормативы актуальны».</text>
-<path d="M65 942 H1735" stroke="#DBDFDE" stroke-width="1.4"/>
-<text x="65" y="977" font-family="Arial,sans-serif" font-size="13" fill="#6B7478">СОГЛАСОВАНО: нормативная база внутри коробки, дата последнего проверенного обновления — при запуске</text>
-<text x="1735" y="977" font-family="Arial,sans-serif" text-anchor="end" font-size="13" fill="#6B7478">GPUGO / CONSTRUCTION DOCS · 18.11.2026</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2160 1340" role="img" aria-label="F07  /  КАК ОБНОВЛЯЮТСЯ НПА И НТД">
+<defs><marker id="tip" markerWidth="11" markerHeight="11" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 1 L10 5 L0 9 Z" fill="#718F99"/></marker><marker id="tip-red" markerWidth="11" markerHeight="11" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 1 L10 5 L0 9 Z" fill="#C88B84"/></marker></defs>
+<style><![CDATA[text{font-family:Arial,'Liberation Sans',sans-serif;letter-spacing:.02px;}]]></style>
+<rect width="2160" height="1340" fill="#F7F3EE"/>
+<rect x="82" y="48" width="10" height="86" rx="5" fill="#67D6EF"/>
+<text x="119" y="89" font-weight="700" font-size="35" fill="#1A1C1D">F07  /  КАК ОБНОВЛЯЮТСЯ НПА И НТД</text>
+<text x="119" y="129" font-size="19" fill="#69777D">ИИ ищет изменения · новая редакция становится рабочей только после проверки</text>
+<path d="M82 156 H2080" stroke="#D9DDDC" stroke-width="2"/>
+<rect x="75" y="215" width="1970" height="850" rx="26" fill="#EDF3F0" stroke="#B7CFC8" stroke-width="2.5"/>
+<text x="100" y="253" font-size="17" letter-spacing="1" font-weight="700" fill="#34444E">01  /  НОРМАТИВЫ И ПРАВИЛА ХРАНЯТСЯ В «КОРОБКЕ»</text>
+<g class="node"><path d="M 116 300 H 444 L 465 321 V 446 Q 465 460 451 460 H 114 Q 100 460 100 446 V 316 Q 100 300 116 300 Z" fill="#FBF2D8" stroke="#DEC58B" stroke-width="2"/><path d="M 444 300 V 321 H 465" fill="none" stroke="#DEC58B" stroke-width="2"/><rect x="102" y="320" width="6" height="120" rx="3" fill="#E7C66B"/><text x="124" y="343" font-size="18" font-weight="700" fill="#1A1C1D">ИСТОЧНИКИ НОРМ</text><text x="124" y="385" font-size="15" fill="#34444E">Официальные публикации</text><text x="124" y="410" font-size="15" fill="#34444E">Действующие редакции</text></g>
+<g class="node"><rect x="600" y="300" width="365" height="160" rx="15" fill="#FCE9E3" stroke="#EAB8A8" stroke-width="2"/><rect x="602" y="320" width="6" height="120" rx="3" fill="#F0AE99"/><text x="624" y="343" font-size="18" font-weight="700" fill="#1A1C1D">ИИ · МОНИТОРИНГ</text><text x="624" y="385" font-size="15" fill="#34444E">Находит новые версии</text><text x="624" y="410" font-size="15" fill="#34444E">Сравнивает изменения</text></g>
+<g class="node"><rect x="1100" y="300" width="365" height="160" rx="15" fill="#E3F4FA" stroke="#AED4E1" stroke-width="2"/><rect x="1102" y="320" width="6" height="120" rx="3" fill="#67D6EF"/><text x="1124" y="343" font-size="18" font-weight="700" fill="#1A1C1D">ПРОЕКТ ОБНОВЛЕНИЯ</text><text x="1124" y="385" font-size="15" fill="#34444E">Редакция, источник, срок</text><text x="1124" y="410" font-size="15" fill="#34444E">Применимость и версии</text></g>
+<g class="node"><path d="M 1615 300 H 1950 L 1965 315 V 445 L 1950 460 H 1615 L 1600 445 V 315 Z" fill="#FBF2D8" stroke="#DEC58B" stroke-width="2"/><rect x="1602" y="320" width="6" height="120" rx="3" fill="#E7C66B"/><text x="1624" y="343" font-size="18" font-weight="700" fill="#1A1C1D">ПРОВЕРКА ПРИМЕНИМОСТИ</text><text x="1624" y="385" font-size="15" fill="#34444E">Дата, статус, территория</text><text x="1624" y="410" font-size="15" fill="#34444E">Правовая сила документа</text></g>
+<g class="node"><rect x="1600" y="730" width="365" height="160" rx="15" fill="#E4F5E8" stroke="#A8D2B0" stroke-width="2"/><path d="M 1602 757 Q 1782.5 777 1963 757" fill="none" stroke="#A8D2B0" stroke-width="1.8" opacity=".6"/><rect x="1602" y="750" width="6" height="120" rx="3" fill="#87E481"/><text x="1624" y="773" font-size="18" font-weight="700" fill="#1A1C1D">ИСТОРИЯ РЕДАКЦИЙ</text><text x="1624" y="815" font-size="15" fill="#34444E">Версии внутри «коробки»</text><text x="1624" y="840" font-size="15" fill="#34444E">Старые нормы не удаляем</text></g>
+<g class="node"><rect x="1100" y="730" width="365" height="160" rx="15" fill="#E3F4FA" stroke="#AED4E1" stroke-width="2"/><rect x="1102" y="750" width="6" height="120" rx="3" fill="#67D6EF"/><text x="1124" y="773" font-size="18" font-weight="700" fill="#1A1C1D">ЗАТРОНУТЫЕ ДОКУМЕНТЫ</text><text x="1124" y="815" font-size="15" fill="#34444E">Определяем зависимости</text><text x="1124" y="840" font-size="15" fill="#34444E">Повторяем нужные проверки</text></g>
+<g class="node"><rect x="600" y="730" width="365" height="160" rx="15" fill="#E4F5E8" stroke="#A8D2B0" stroke-width="2"/><rect x="602" y="750" width="6" height="120" rx="3" fill="#87E481"/><text x="624" y="773" font-size="18" font-weight="700" fill="#1A1C1D">ПРАВИЛА И ШАБЛОНЫ</text><text x="624" y="815" font-size="15" fill="#34444E">Валидаторы и формы</text><text x="624" y="840" font-size="15" fill="#34444E">Применимые редакции</text></g>
+<g class="node"><rect x="100" y="730" width="365" height="160" rx="15" fill="#E4F5E8" stroke="#A8D2B0" stroke-width="2"/><rect x="102" y="750" width="6" height="120" rx="3" fill="#87E481"/><text x="124" y="773" font-size="18" font-weight="700" fill="#1A1C1D">СТАТУС ОБНОВЛЕНИЯ</text><text x="124" y="815" font-size="15" fill="#34444E">Дата успешной проверки</text><text x="124" y="840" font-size="15" fill="#34444E">Сбой не равен актуальности</text></g>
+<g class="node"><path d="M 1615 1095 H 1950 L 1965 1110 V 1222 L 1950 1237 H 1615 L 1600 1222 V 1110 Z" fill="#FCE9E3" stroke="#EAB8A8" stroke-width="2"/><rect x="1602" y="1115" width="6" height="102" rx="3" fill="#F0AE99"/><text x="1624" y="1138" font-size="18" font-weight="700" fill="#1A1C1D">ОТКЛОНЕНО / НЕПРОВЕРЕНО</text><text x="1624" y="1180" font-size="15" fill="#34444E">Не менять правила молча</text><text x="1624" y="1205" font-size="15" fill="#34444E">Причина остаётся в журнале</text></g>
+<path d="M465 380 L600 380" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M965 380 L1100 380" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1465 380 L1600 380" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1782 460 L1782 730" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1600 810 L1465 810" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1100 810 L965 810" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M600 810 L465 810" fill="none" stroke="#718F99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip)"/>
+<path d="M1965 380 L2070 380 L2070 1166 L1965 1166" fill="none" stroke="#C88B84" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tip-red)"/>
+<path d="M82 1295 H2080" stroke="#D9DDDC" stroke-width="2"/>
+<text x="82" y="1321" font-size="15" fill="#69777D">В интерфейсе — дата последнего успешно проверенного обновления нормативной базы</text>
 </svg>
