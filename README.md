@@ -4,7 +4,8 @@
 
 > **18.11.2026 · Architecture baseline**  
 > Согласована функциональная модель. Работающий код пока является **инженерным PoC**, а не готовым SaaS, сертифицированной системой обработки персональных данных или подписания ИД.  
-> **Ветка:** `feat/windows-saas-architecture-mvp` · **[Draft PR #1](https://github.com/jetsedpack/construction-docs-saas/pull/1)** · основной `main` не заменяется без ревью.
+> **Статус:** [PR #1](https://github.com/jetsedpack/construction-docs-saas/pull/1) объединён с `main` 18.11.2026. Текущая ветка `main` содержит архитектурный baseline и ранний PoC.  
+> **Проверки на момент слияния:** [GitHub Actions #128](https://github.com/jetsedpack/construction-docs-saas/actions/runs/44353780486) — успешно: Python-тесты на Linux/Windows, Windows UI import smoke, проверки архитектурных контрактов. Это не проверка production-развёртывания.
 
 ## Архитектура, которую можно открыть и показать
 
